@@ -7,6 +7,10 @@ import { Component } from '@stencil/core';
 })
 export class MyApp {
 
+  resetCounter(id: string) {
+    document.getElementById(id).dispatchEvent(new CustomEvent('rpg_resetcounter'))
+  }
+
   render() {
     return (
       <div>
@@ -15,13 +19,12 @@ export class MyApp {
         </header>
 
         <main>
-          <stencil-router>
-            <stencil-route url='/' component='app-home' exact={true}>
-            </stencil-route>
+          <h2>Point Tracker</h2>
+          <point-tracker id="hpTracker" title="HP" maximum={10}></point-tracker>
+          <point-tracker id="manaTracker" title="MP" maximum={30}></point-tracker>
 
-            <stencil-route url='/profile/:name' component='app-profile'>
-            </stencil-route>
-          </stencil-router>
+          <button type="button" onClick={() => this.resetCounter('hpTracker')}>Reset HP Count</button>
+          <button type="button" onClick={() => this.resetCounter('manaTracker')}>Reset MP Count</button>
         </main>
       </div>
     );
