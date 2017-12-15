@@ -1,4 +1,10 @@
 point-tracker {
+  text-align: center;
+  div.container {
+    width: 82px;
+  }
+  
+
   .counter-container {
     padding: 20px;
     font-size: 20px;
@@ -11,5 +17,21 @@ point-tracker {
     font-size: 18;
     font-weight: bold;
     padding: 5px 10px 5px 10px;
+  }
+
+  .button-container {
+    margin: auto;
+    position: relative;
+    height: 25px;
+  }
+
+  .button-left {
+    position: absolute;
+    left: 0;
+  }
+
+  .button-right {
+    position: absolute;
+    right: 0;
   }
 }

@@ -14,7 +14,7 @@ export class PointTracker {
   @State() currentValue;
 
   @Listen('rpg_resetcounter')
-  resetCounter(ev) {
+  resetCounter() {
     this.currentValue = this.maximum;
   }
 
@@ -45,20 +45,22 @@ export class PointTracker {
 
   render() {
     return (
-      <div>
+      <div class="container">
         <h2>{this.title}</h2>
 
         <div class="counter-container" onClick={(event) => this.clickToEdit(event)}>
           {this.currentValue}
         </div>
 
-        <button onClick={() => this.decrement()}>
-          -
-        </button>
+        <div class="button-container">
+          <button class="button-left" onClick={() => this.decrement()}>
+            -
+          </button>
 
-        <button onClick={() => this.increment()}>
-          +
-        </button>
+          <button class="button-right" onClick={() => this.increment()}>
+            +
+          </button>
+        </div>
       </div>
     );
   }

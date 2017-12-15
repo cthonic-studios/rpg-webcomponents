@@ -20,8 +20,11 @@ export class MyApp {
 
         <main>
           <h2>Point Tracker</h2>
-          <point-tracker id="hpTracker" title="HP" maximum={10}></point-tracker>
-          <point-tracker id="manaTracker" title="MP" maximum={30}></point-tracker>
+          <div class="pointtrack">
+            <point-tracker id="hpTracker" title="HP" maximum={10}></point-tracker>
+            <point-tracker id="manaTracker" title="MP" maximum={30}></point-tracker>
+          </div>
+          
 
           <button type="button" onClick={() => this.resetCounter('hpTracker')}>Reset HP Count</button>
           <button type="button" onClick={() => this.resetCounter('manaTracker')}>Reset MP Count</button>
