@@ -11,6 +11,10 @@ export class MyApp {
     document.getElementById(id).dispatchEvent(new CustomEvent('rpg_resetcounter'))
   }
 
+  counterSetDemo() {
+    document.getElementById('hpTracker').dispatchEvent(new CustomEvent('rpg_setcounter', {detail: {value: 100}}))
+  }
+
   render() {
     return (
       <div>
@@ -19,15 +23,17 @@ export class MyApp {
         </header>
 
         <main>
-          <h2>Point Tracker</h2>
-          <div class="pointtrack">
-            <point-tracker id="hpTracker" title="HP" maximum={10}></point-tracker>
-            <point-tracker id="manaTracker" title="MP" maximum={30}></point-tracker>
-          </div>
-          
+          <div class="point-example">
+            <h2>Point Tracker</h2>
+            <div class="pointtrack">
+              <point-tracker id="hpTracker" title="HP" maximum={10}></point-tracker>
+              <point-tracker id="manaTracker" title="MP" maximum={30}></point-tracker>
+            </div>
 
-          <button type="button" onClick={() => this.resetCounter('hpTracker')}>Reset HP Count</button>
-          <button type="button" onClick={() => this.resetCounter('manaTracker')}>Reset MP Count</button>
+            <button type="button" onClick={() => this.resetCounter('hpTracker')}>Reset HP Count</button>
+            <button type="button" onClick={() => this.resetCounter('manaTracker')}>Reset MP Count</button>
+            <button type="button" onClick={() => this.counterSetDemo()}>Set HP to 100</button>
+          </div>
         </main>
       </div>
     );

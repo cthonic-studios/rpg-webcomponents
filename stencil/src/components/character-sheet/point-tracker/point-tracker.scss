@@ -1,9 +1,21 @@
 point-tracker {
+  h2 {
+    margin: 0;
+    margin-bottom: 4px;
+  }
+
   text-align: center;
   div.container {
     width: 82px;
+    margin: auto;
   }
   
+  .enter-counter-value {
+    width: 30px;
+    font-size: 18px;
+    text-align: center;
+    padding: 0;
+  }
 
   .counter-container {
     padding: 20px;
@@ -11,18 +23,23 @@ point-tracker {
     font-weight: black;
     border: 1px solid black;
     width: 40px;
+    margin-bottom: 5px;
   }
 
   button {
-    font-size: 18;
+    font-size: 18px;
     font-weight: bold;
     padding: 5px 10px 5px 10px;
+    background-color:#ccc;
+    width: 48%;
+    box-shadow: 1px;
   }
 
   .button-container {
     margin: auto;
     position: relative;
-    height: 25px;
+    overflow: auto;
+    height: 40px;
   }
 
   .button-left {

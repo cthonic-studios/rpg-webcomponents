@@ -8,30 +8,32 @@ import '@stencil/router';
 
 
 import {
-  MyApp as MyApp
-} from './components/my-app/my-app';
+  PointTracker as PointTracker
+} from './components/character-sheet/point-tracker/point-tracker';
 
 declare global {
-  interface HTMLMyAppElement extends MyApp, HTMLElement {
+  interface HTMLPointTrackerElement extends PointTracker, HTMLElement {
   }
-  var HTMLMyAppElement: {
-    prototype: HTMLMyAppElement;
-    new (): HTMLMyAppElement;
+  var HTMLPointTrackerElement: {
+    prototype: HTMLPointTrackerElement;
+    new (): HTMLPointTrackerElement;
   };
   interface HTMLElementTagNameMap {
-    "my-app": HTMLMyAppElement;
+    "point-tracker": HTMLPointTrackerElement;
   }
   interface ElementTagNameMap {
-    "my-app": HTMLMyAppElement;
+    "point-tracker": HTMLPointTrackerElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      "my-app": JSXElements.MyAppAttributes;
+      "point-tracker": JSXElements.PointTrackerAttributes;
     }
   }
   namespace JSXElements {
-    export interface MyAppAttributes extends HTMLAttributes {
-      
+    export interface PointTrackerAttributes extends HTMLAttributes {
+      title?: string;
+      maximum?: number;
+      minimum?: number;
     }
   }
 }

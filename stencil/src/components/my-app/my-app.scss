@@ -14,4 +14,22 @@ my-app {
     color: #fff;
     padding: 0 12px;
   }
+
+  .point-example {
+    width: 500px;
+    margin: auto;
+    text-align: center;
+  }
+
+  .pointtrack {
+    margin: auto;
+    box-sizing: border-box;
+    width: 250px;
+    display: flex;
+    justify-content: center;
+
+    point-tracker {
+      flex: 1;
+    }
+  }
 }
