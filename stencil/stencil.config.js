@@ -1,6 +1,6 @@
 exports.config = {
   bundles: [
-    { components: ['point-tracker'] }
+    { components: ['point-tracker', 'character-attribute'] }
   ],
   collections: [
     { name: '@stencil/router' }

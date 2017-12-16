@@ -34,6 +34,10 @@ export class MyApp {
             <button type="button" onClick={() => this.resetCounter('manaTracker')}>Reset MP Count</button>
             <button type="button" onClick={() => this.counterSetDemo()}>Set HP to 100</button>
           </div>
+
+          <div class="attributes">
+            <character-attribute name="Strength"></character-attribute>
+          </div>
         </main>
       </div>
     );

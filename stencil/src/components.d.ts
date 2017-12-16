@@ -8,6 +8,36 @@ import '@stencil/router';
 
 
 import {
+  CharacterAttribute as CharacterAttribute
+} from './components/character-sheet/character-attribute/character-attribute';
+
+declare global {
+  interface HTMLCharacterAttributeElement extends CharacterAttribute, HTMLElement {
+  }
+  var HTMLCharacterAttributeElement: {
+    prototype: HTMLCharacterAttributeElement;
+    new (): HTMLCharacterAttributeElement;
+  };
+  interface HTMLElementTagNameMap {
+    "character-attribute": HTMLCharacterAttributeElement;
+  }
+  interface ElementTagNameMap {
+    "character-attribute": HTMLCharacterAttributeElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "character-attribute": JSXElements.CharacterAttributeAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface CharacterAttributeAttributes extends HTMLAttributes {
+      name?: string;
+    }
+  }
+}
+
+
+import {
   PointTracker as PointTracker
 } from './components/character-sheet/point-tracker/point-tracker';
 
