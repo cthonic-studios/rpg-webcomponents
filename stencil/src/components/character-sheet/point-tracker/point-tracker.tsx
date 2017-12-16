@@ -81,7 +81,7 @@ export class PointTracker {
 
         <div class="counter-container" onClick={(event) => this.clickToEdit(event)}>
           {!this.isEditable
-            ? <span class="counter-value">{this.currentValue}</span>
+            ? <span id="counterValue" class="counter-value">{this.currentValue}</span>
             : <input class="enter-counter-value" value={this.currentValue}
                 onChange={(event: any) => this.setValue(event.target.value)}
               />
