@@ -1,0 +1,21 @@
+character-attribute {
+    .character-attribute-container {
+        width: 100px;
+        text-align: center;
+
+        .attribute-name {
+            
+        }
+        .attribute-value-container {
+            border: 1px solid black;
+            padding: 15px;
+        }
+
+        .attribute-bonus-container {
+            border-radius: 50%;
+            border: 1px solid black;
+            width: 50%;
+            margin: auto;
+        }
+    }
+}

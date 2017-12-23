@@ -36,7 +36,12 @@ export class MyApp {
           </div>
 
           <div class="attributes">
-            <character-attribute name="Strength"></character-attribute>
+            <character-attribute name="Strength" attributeValue={10}></character-attribute>
+            <character-attribute name="Dexterity" attributeValue={18}></character-attribute>
+            <character-attribute name="Constitution" attributeValue={8}></character-attribute>
+            <character-attribute name="Intelligence" attributeValue={12}></character-attribute>
+            <character-attribute name="Wisdom" attributeValue={10}></character-attribute>
+            <character-attribute name="Charisma" attributeValue={16}></character-attribute>
           </div>
         </main>
       </div>

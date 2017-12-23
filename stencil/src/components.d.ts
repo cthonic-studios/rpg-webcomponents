@@ -31,69 +31,10 @@ declare global {
   }
   namespace JSXElements {
     export interface CharacterAttributeAttributes extends HTMLAttributes {
+      attributeValue?: number;
+      bonusCalculation?: Function;
       name?: string;
-    }
-  }
-}
-
-
-import {
-  PointTracker as PointTracker
-} from './components/character-sheet/point-tracker/point-tracker';
-
-declare global {
-  interface HTMLPointTrackerElement extends PointTracker, HTMLElement {
-  }
-  var HTMLPointTrackerElement: {
-    prototype: HTMLPointTrackerElement;
-    new (): HTMLPointTrackerElement;
-  };
-  interface HTMLElementTagNameMap {
-    "point-tracker": HTMLPointTrackerElement;
-  }
-  interface ElementTagNameMap {
-    "point-tracker": HTMLPointTrackerElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      "point-tracker": JSXElements.PointTrackerAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface PointTrackerAttributes extends HTMLAttributes {
-      maximum?: number;
-      minimum?: number;
-      title?: string;
-    }
-  }
-}
-
-
-import {
-  MyApp as MyApp
-} from './components/my-app/my-app';
-
-declare global {
-  interface HTMLMyAppElement extends MyApp, HTMLElement {
-  }
-  var HTMLMyAppElement: {
-    prototype: HTMLMyAppElement;
-    new (): HTMLMyAppElement;
-  };
-  interface HTMLElementTagNameMap {
-    "my-app": HTMLMyAppElement;
-  }
-  interface ElementTagNameMap {
-    "my-app": HTMLMyAppElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      "my-app": JSXElements.MyAppAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface MyAppAttributes extends HTMLAttributes {
-      
+      showBonus?: boolean;
     }
   }
 }
