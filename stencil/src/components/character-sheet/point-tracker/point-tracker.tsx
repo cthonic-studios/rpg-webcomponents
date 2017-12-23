@@ -16,12 +16,12 @@ export class PointTracker {
 
   @Element() el: HTMLElement;
 
-  @Listen('rpg_resetcounter')
+  @Listen('rpg_resetvalue')
   resetCounter() {
     this.currentValue = this.maximum;
   }
 
-  @Listen('rpg_setcounter')
+  @Listen('rpg_setvalue')
   setValueFromEvent(event: CustomEvent) {
     if (event.detail.value) {
       this.setValue(event.detail.value);

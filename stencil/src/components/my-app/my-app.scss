@@ -8,6 +8,13 @@ my-app {
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
   }
 
+  main {
+  }
+
+  main > div {
+    float: left;
+  }
+
   h1 {
     font-size: 1.4rem;
     font-weight: 500;
@@ -22,7 +29,7 @@ my-app {
   }
 
   .attributes {
-    width: 30%;
+    width: 10%;
   }
 
   .pointtrack {

@@ -8,33 +8,30 @@ import '@stencil/router';
 
 
 import {
-  CharacterAttribute as CharacterAttribute
-} from './components/character-sheet/character-attribute/character-attribute';
+  MyApp as MyApp
+} from './components/my-app/my-app';
 
 declare global {
-  interface HTMLCharacterAttributeElement extends CharacterAttribute, HTMLElement {
+  interface HTMLMyAppElement extends MyApp, HTMLElement {
   }
-  var HTMLCharacterAttributeElement: {
-    prototype: HTMLCharacterAttributeElement;
-    new (): HTMLCharacterAttributeElement;
+  var HTMLMyAppElement: {
+    prototype: HTMLMyAppElement;
+    new (): HTMLMyAppElement;
   };
   interface HTMLElementTagNameMap {
-    "character-attribute": HTMLCharacterAttributeElement;
+    "my-app": HTMLMyAppElement;
   }
   interface ElementTagNameMap {
-    "character-attribute": HTMLCharacterAttributeElement;
+    "my-app": HTMLMyAppElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      "character-attribute": JSXElements.CharacterAttributeAttributes;
+      "my-app": JSXElements.MyAppAttributes;
     }
   }
   namespace JSXElements {
-    export interface CharacterAttributeAttributes extends HTMLAttributes {
-      attributeValue?: number;
-      bonusCalculation?: Function;
-      name?: string;
-      showBonus?: boolean;
+    export interface MyAppAttributes extends HTMLAttributes {
+      
     }
   }
 }
