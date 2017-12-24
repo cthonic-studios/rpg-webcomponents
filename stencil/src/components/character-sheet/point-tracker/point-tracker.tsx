@@ -19,15 +19,17 @@ export class PointTracker {
   @Listen('rpg_resetvalue')
   resetCounter() {
     this.currentValue = this.maximum;
+    this.setValue(this.currentValue);
   }
 
   @Listen('rpg_setvalue')
   setValueFromEvent(event: CustomEvent) {
-    if (event.detail.value) {
-      this.setValue(event.detail.value);
+    if (event.detail) {
+      this.setValue(event.detail);
     }
   }
 
+  @Listen('keyup.escape')
   @Listen('keyup.enter')
   closeEditor() {
     if (this.isEditable) {
@@ -35,27 +37,20 @@ export class PointTracker {
     }
   }
 
+  @Listen('valueChanged')
+  valueChanged(event: CustomEvent) {
+    if (this.currentValue != event.detail) {
+      this.currentValue = event.detail;
+    }
+  }
+
   componentWillLoad() {
     this.currentValue = this.maximum;
   }
 
-  clickToEdit(event) {
-    if (event.target.tagName == 'INPUT') {
-      return;
-    }
-
-    this.isEditable = !this.isEditable;
-
-    // This is so the input will exist (could also do it in componentDidUpdate?)
-    if (this.isEditable) {
-      setTimeout(() => {
-        this.el.querySelector('input').focus()
-      }, 0);
-    }
-  }
-
   setValue(val) {
-    this.currentValue = parseInt(val);
+    let event = new CustomEvent('rpg_setvalue', {detail: val});
+    this.el.querySelector('editable-number').dispatchEvent(event);
   }
 
   decrement() {
@@ -64,6 +59,8 @@ export class PointTracker {
     if (this.currentValue <= this.minimum) {
       this.currentValue = this.minimum;
     }
+
+    this.setValue(this.currentValue);
   }
   
   increment() {
@@ -72,6 +69,8 @@ export class PointTracker {
     if (this.currentValue >= this.maximum) {
       this.currentValue = this.maximum;
     }
+
+    this.setValue(this.currentValue);
   }
 
   render() {
@@ -79,14 +78,7 @@ export class PointTracker {
       <div class="container">
         <h2>{this.title}</h2>
 
-        <div class="counter-container" onClick={(event) => this.clickToEdit(event)}>
-          {!this.isEditable
-            ? <span id="counterValue" class="counter-value">{this.currentValue}</span>
-            : <input class="enter-counter-value" value={this.currentValue}
-                onChange={(event: any) => this.setValue(event.target.value)}
-              />
-          }
-        </div>
+        <editable-number startingValue={this.currentValue}></editable-number>
 
         <div class="button-container">
           <button class="button-left" onClick={() => this.decrement()}>

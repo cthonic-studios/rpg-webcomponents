@@ -12,7 +12,11 @@ export class MyApp {
   }
 
   counterSetDemo() {
-    document.getElementById('hpTracker').dispatchEvent(new CustomEvent('rpg_setvalue', {detail: {value: 100}}))
+    document.getElementById('hpTracker').dispatchEvent(new CustomEvent('rpg_setvalue', {detail: 100}))
+  }
+
+  addBonusToStrength() {
+    document.querySelector('#strength').dispatchEvent(new CustomEvent('attributeBonus', {detail: 2}));
   }
 
   render() {
@@ -41,6 +45,7 @@ export class MyApp {
             <button type="button" onClick={() => this.resetCounter('hpTracker')}>Reset HP Count</button>
             <button type="button" onClick={() => this.resetCounter('manaTracker')}>Reset MP Count</button>
             <button type="button" onClick={() => this.counterSetDemo()}>Set HP to 100</button>
+            <button type="button" onClick={() => this.addBonusToStrength()}>+2 to STR</button>
           </div>
         </main>
       </div>

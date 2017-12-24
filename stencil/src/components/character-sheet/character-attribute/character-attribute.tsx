@@ -8,6 +8,7 @@ export class CharacterAttribute {
   @Prop() name: string;
   @Prop() showBonus: boolean = true;
   @Prop() attributeValue: number;
+  @Prop() attributeCap: number;
   @Prop() bonusCalculation: Function;
   @Prop() styleType: string = 'vertical';
 
@@ -16,19 +17,63 @@ export class CharacterAttribute {
   styleClass: string;
   @State() isEditable: boolean = false;
   @State() currentAttrValue: number;
-  @State() bonus: number;
+  @State() bonus: number = 0;
 
-  @Listen('keyup.enter')
-  closeEditor() {
-    if (this.isEditable) {
-      this.isEditable = false;
-    }
-  }
-  
+ 
   @Listen('rpg_setvalue')
   setValueFromEvent(event: CustomEvent) {
-    if (event.detail.value) {
-      this.setValue(event.detail.value);
+    if (event.detail) {
+      this.setValue(event.detail);
+    }
+  }
+
+  @Listen('clearBonus')
+  clearBonus() {
+    this.setBonus(0);
+  }
+
+  @Listen('attributeDamage')
+  @Listen('attributeBonus')
+  attributeDamageOrBonus(event: CustomEvent) {
+    let newBonus;
+
+    if (event.type === 'attributeBonus') {
+      newBonus = this.bonus + event.detail;
+    } else {
+      newBonus = this.bonus - event.detail;
+    }
+    
+    this.setBonus(newBonus);
+  }
+
+  setBonus(value: number) {
+    this.bonus = value;
+    if (this.bonus > 0) {
+      this.el.classList.add('is-boosted');
+    } else {
+      this.el.classList.remove('is-boosted');
+    }
+
+    if (this.bonus < 0) {
+      this.el.classList.add('is-penalized');
+    } else {
+      this.el.classList.remove('is-penalized');
+    }
+
+    this.setValue(this.currentAttrValue + this.bonus);
+  }
+
+  @Listen('valueChanged')
+  valueChanged(event: CustomEvent) {
+    let newVal = event.detail;
+    if (this.currentAttrValue != newVal) {
+      if (this.attributeCap && newVal > this.attributeCap) {
+        newVal = this.attributeCap;
+        return this.setValue(newVal);
+      }
+
+      this.currentAttrValue = newVal;
+      this.bonus = this.calculateBonus();
     }
   }
 
@@ -49,6 +94,9 @@ export class CharacterAttribute {
   setValue(value) {
     this.currentAttrValue = value;
     this.bonus = this.calculateBonus();
+
+    let event = new CustomEvent('rpg_setvalue', {detail: this.currentAttrValue});
+    this.el.querySelector('editable-number').dispatchEvent(event);
   }
 
   /**
@@ -76,14 +124,7 @@ export class CharacterAttribute {
         <div class="attribute-name">
           {this.name}
         </div>
-        <div class="attribute-value-container" onClick={(event) => this.clickToEdit(event)}>
-          {!this.isEditable
-            ? <span id="attributeValue" class="attribute-value">{this.currentAttrValue}</span>
-            : <input class="enter-attribute-value" value={this.currentAttrValue}
-                onChange={(event: any) => this.setValue(event.target.value)}
-              />
-          }
-        </div>
+        <editable-number startingValue={this.currentAttrValue}></editable-number>
         {this.showBonus ?
           <div class="attribute-bonus-container">
             {this.bonus}
