@@ -8,6 +8,7 @@ export class CharacterAttribute {
   @Prop() name: string;
   @Prop() showBonus: boolean = true;
   @Prop() attributeValue: number;
+  @Prop() attributeCap: number;
   @Prop() bonusCalculation: Function;
   @Prop() styleType: string = 'vertical';
 
@@ -16,7 +17,7 @@ export class CharacterAttribute {
   styleClass: string;
   @State() isEditable: boolean = false;
   @State() currentAttrValue: number;
-  @State() bonus: number;
+  @State() bonus: number = 0;
 
  
   @Listen('rpg_setvalue')
@@ -26,10 +27,52 @@ export class CharacterAttribute {
     }
   }
 
+  @Listen('clearBonus')
+  clearBonus() {
+    this.setBonus(0);
+  }
+
+  @Listen('attributeDamage')
+  @Listen('attributeBonus')
+  attributeDamageOrBonus(event: CustomEvent) {
+    let newBonus;
+
+    if (event.type === 'attributeBonus') {
+      newBonus = this.bonus + event.detail;
+    } else {
+      newBonus = this.bonus - event.detail;
+    }
+    
+    this.setBonus(newBonus);
+  }
+
+  setBonus(value: number) {
+    this.bonus = value;
+    if (this.bonus > 0) {
+      this.el.classList.add('is-boosted');
+    } else {
+      this.el.classList.remove('is-boosted');
+    }
+
+    if (this.bonus < 0) {
+      this.el.classList.add('is-penalized');
+    } else {
+      this.el.classList.remove('is-penalized');
+    }
+
+    this.setValue(this.currentAttrValue + this.bonus);
+  }
+
   @Listen('valueChanged')
   valueChanged(event: CustomEvent) {
-    if (this.currentAttrValue != event.detail) {
-      this.currentAttrValue = event.detail;
+    let newVal = event.detail;
+    if (this.currentAttrValue != newVal) {
+      if (this.attributeCap && newVal > this.attributeCap) {
+        newVal = this.attributeCap;
+        return this.setValue(newVal);
+      }
+
+      this.currentAttrValue = newVal;
       this.bonus = this.calculateBonus();
     }
   }

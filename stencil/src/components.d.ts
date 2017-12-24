@@ -31,6 +31,7 @@ declare global {
   }
   namespace JSXElements {
     export interface CharacterAttributeAttributes extends HTMLAttributes {
+      attributeCap?: number;
       attributeValue?: number;
       bonusCalculation?: Function;
       name?: string;

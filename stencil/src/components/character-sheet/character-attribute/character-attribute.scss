@@ -1,4 +1,13 @@
 character-attribute {
+
+    &.is-penalized {
+        color: red;
+    }
+
+    &.is-boosted {
+        color: green;
+    }
+
     .character-attribute-container.character-attribute-vertical {
         width: 80px;
         text-align: center;
@@ -7,6 +16,7 @@ character-attribute {
             font-weight: bold;
             font-size: .8em;
         }
+
         editable-number {
             border: 1px solid black;
             padding: 15px 0 15px;
