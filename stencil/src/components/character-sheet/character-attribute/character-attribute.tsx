@@ -18,17 +18,19 @@ export class CharacterAttribute {
   @State() currentAttrValue: number;
   @State() bonus: number;
 
-  @Listen('keyup.enter')
-  closeEditor() {
-    if (this.isEditable) {
-      this.isEditable = false;
-    }
-  }
-  
+ 
   @Listen('rpg_setvalue')
   setValueFromEvent(event: CustomEvent) {
-    if (event.detail.value) {
-      this.setValue(event.detail.value);
+    if (event.detail) {
+      this.setValue(event.detail);
+    }
+  }
+
+  @Listen('valueChanged')
+  valueChanged(event: CustomEvent) {
+    if (this.currentAttrValue != event.detail) {
+      this.currentAttrValue = event.detail;
+      this.bonus = this.calculateBonus();
     }
   }
 
@@ -49,6 +51,9 @@ export class CharacterAttribute {
   setValue(value) {
     this.currentAttrValue = value;
     this.bonus = this.calculateBonus();
+
+    let event = new CustomEvent('rpg_setvalue', {detail: this.currentAttrValue});
+    this.el.querySelector('editable-number').dispatchEvent(event);
   }
 
   /**
@@ -76,14 +81,7 @@ export class CharacterAttribute {
         <div class="attribute-name">
           {this.name}
         </div>
-        <div class="attribute-value-container" onClick={(event) => this.clickToEdit(event)}>
-          {!this.isEditable
-            ? <span id="attributeValue" class="attribute-value">{this.currentAttrValue}</span>
-            : <input class="enter-attribute-value" value={this.currentAttrValue}
-                onChange={(event: any) => this.setValue(event.target.value)}
-              />
-          }
-        </div>
+        <editable-number startingValue={this.currentAttrValue}></editable-number>
         {this.showBonus ?
           <div class="attribute-bonus-container">
             {this.bonus}

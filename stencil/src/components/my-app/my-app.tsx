@@ -12,7 +12,7 @@ export class MyApp {
   }
 
   counterSetDemo() {
-    document.getElementById('hpTracker').dispatchEvent(new CustomEvent('rpg_setvalue', {detail: {value: 100}}))
+    document.getElementById('hpTracker').dispatchEvent(new CustomEvent('rpg_setvalue', {detail: 100}))
   }
 
   render() {
