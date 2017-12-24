@@ -1,8 +1,8 @@
 {
-  "name": "@stencil/starter",
+  "name": "rpg_webcomponents",
   "private": true,
   "version": "0.0.1",
-  "description": "Stencil App Starter",
+  "description": "RPG Webcomponents",
   "files": [
     "dist/"
   ],
@@ -14,6 +14,10 @@
     "test": "jest --no-cache",
     "test.watch": "jest --watch --no-cache"
   },
+  "main": "dist/collection/index.js",
+  "types": "dist/collection/index.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "browser": "dist/rpg_webcomponents.js",
   "dependencies": {
     "@stencil/core": "0.0.9-2",
     "@stencil/router": "latest"
@@ -33,6 +37,7 @@
   "bugs": {
     "url": "https://github.com/ionic-team/stencil"
   },
+  
   "homepage": "https://github.com/ionic-team/stencil",
   "jest": {
     "transform": {

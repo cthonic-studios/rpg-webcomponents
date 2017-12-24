@@ -24,12 +24,12 @@ export class MyApp {
 
         <main>
           <div class="attributes">
-            <character-attribute name="Strength" attributeValue={10}></character-attribute>
-            <character-attribute name="Dexterity" attributeValue={18}></character-attribute>
-            <character-attribute name="Constitution" attributeValue={8}></character-attribute>
-            <character-attribute name="Intelligence" attributeValue={12}></character-attribute>
-            <character-attribute name="Wisdom" attributeValue={10}></character-attribute>
-            <character-attribute name="Charisma" attributeValue={16}></character-attribute>
+            <character-attribute name="Strength" attribute-value={10}></character-attribute>
+            <character-attribute name="Dexterity" attribute-value={18}></character-attribute>
+            <character-attribute name="Constitution" attribute-value={8}></character-attribute>
+            <character-attribute name="Intelligence" attribute-value={12}></character-attribute>
+            <character-attribute name="Wisdom" attribute-value={10}></character-attribute>
+            <character-attribute name="Charisma" attribute-value={16}></character-attribute>
           </div>
 
           <div class="point-example">
