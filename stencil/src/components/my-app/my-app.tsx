@@ -28,7 +28,7 @@ export class MyApp {
 
         <main>
           <div class="attributes">
-            <character-attribute name="Strength" attribute-value={10}></character-attribute>
+            <character-attribute id="strength" name="Strength" attribute-value={10}></character-attribute>
             <character-attribute name="Dexterity" attribute-value={18}></character-attribute>
             <character-attribute name="Constitution" attribute-value={8}></character-attribute>
             <character-attribute name="Intelligence" attribute-value={12}></character-attribute>
@@ -46,6 +46,11 @@ export class MyApp {
             <button type="button" onClick={() => this.resetCounter('manaTracker')}>Reset MP Count</button>
             <button type="button" onClick={() => this.counterSetDemo()}>Set HP to 100</button>
             <button type="button" onClick={() => this.addBonusToStrength()}>+2 to STR</button>
+
+            <div class="skill-list">
+              <character-skill name="Arcana" proficient={true} />
+              <character-skill name="Knowledge (History)" proficient={true} />
+            </div>
           </div>
         </main>
       </div>
