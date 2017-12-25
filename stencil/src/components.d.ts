@@ -8,32 +8,31 @@ import '@stencil/router';
 
 
 import {
-  PointTracker as PointTracker
-} from './components/character-sheet/point-tracker/point-tracker';
+  Wallet as RpgWallet
+} from './components/character-sheet/wallet/wallet';
 
 declare global {
-  interface HTMLPointTrackerElement extends PointTracker, HTMLElement {
+  interface HTMLRpgWalletElement extends RpgWallet, HTMLElement {
   }
-  var HTMLPointTrackerElement: {
-    prototype: HTMLPointTrackerElement;
-    new (): HTMLPointTrackerElement;
+  var HTMLRpgWalletElement: {
+    prototype: HTMLRpgWalletElement;
+    new (): HTMLRpgWalletElement;
   };
   interface HTMLElementTagNameMap {
-    "point-tracker": HTMLPointTrackerElement;
+    "rpg-wallet": HTMLRpgWalletElement;
   }
   interface ElementTagNameMap {
-    "point-tracker": HTMLPointTrackerElement;
+    "rpg-wallet": HTMLRpgWalletElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      "point-tracker": JSXElements.PointTrackerAttributes;
+      "rpg-wallet": JSXElements.RpgWalletAttributes;
     }
   }
   namespace JSXElements {
-    export interface PointTrackerAttributes extends HTMLAttributes {
-      maximum?: number;
-      minimum?: number;
-      title?: string;
+    export interface RpgWalletAttributes extends HTMLAttributes {
+      currencies?: string[];
+      currencyValues?: number[];
     }
   }
 }

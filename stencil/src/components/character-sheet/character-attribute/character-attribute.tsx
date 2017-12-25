@@ -1,4 +1,4 @@
-import { Component, Prop, Element, State, Listen } from '@stencil/core';
+import { Component, Prop, Element, State, Listen, PropDidChange } from '@stencil/core';
 
 @Component({
   tag: 'character-attribute',
@@ -19,6 +19,10 @@ export class CharacterAttribute {
   @State() currentAttrValue: number;
   @State() bonus: number = 0;
 
+  @PropDidChange('attributeValue')
+  attrValueChanged(newValue: any) {
+    this.setValue(parseInt(newValue));
+  }
  
   @Listen('rpg_setvalue')
   setValueFromEvent(event: CustomEvent) {

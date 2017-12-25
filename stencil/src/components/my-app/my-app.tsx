@@ -54,6 +54,10 @@ export class MyApp {
               <character-skill name="Arcana" proficient={true} />
               <character-skill name="Knowledge (History)" proficient={true} />
             </div>
+
+            <div class="wallet">
+              <rpg-wallet />
+            </div>
           </div>
         </main>
       </div>
