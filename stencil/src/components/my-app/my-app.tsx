@@ -12,7 +12,10 @@ export class MyApp {
   }
 
   counterSetDemo() {
-    document.getElementById('hpTracker').dispatchEvent(new CustomEvent('rpg_setvalue', {detail: 100}))
+    //document.getElementById('hpTracker').dispatchEvent(new CustomEvent('rpg_setvalue', {detail: 100}))
+    let track:any = document.querySelector('#hpTracker');
+    console.log(track);
+    track.maximum = "100";
   }
 
   addBonusToStrength() {

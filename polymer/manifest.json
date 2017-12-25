@@ -1,0 +1,6 @@
+{
+  "name": "rpg_webcomponents_polymer",
+  "short_name": "rpg_webcomponents_polymer",
+  "start_url": "/",
+  "display": "standalone"
+}

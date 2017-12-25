@@ -8,34 +8,32 @@ import '@stencil/router';
 
 
 import {
-  CharacterSkill as CharacterSkill
-} from './components/character-sheet/character-skill/character-skill';
+  PointTracker as PointTracker
+} from './components/character-sheet/point-tracker/point-tracker';
 
 declare global {
-  interface HTMLCharacterSkillElement extends CharacterSkill, HTMLElement {
+  interface HTMLPointTrackerElement extends PointTracker, HTMLElement {
   }
-  var HTMLCharacterSkillElement: {
-    prototype: HTMLCharacterSkillElement;
-    new (): HTMLCharacterSkillElement;
+  var HTMLPointTrackerElement: {
+    prototype: HTMLPointTrackerElement;
+    new (): HTMLPointTrackerElement;
   };
   interface HTMLElementTagNameMap {
-    "character-skill": HTMLCharacterSkillElement;
+    "point-tracker": HTMLPointTrackerElement;
   }
   interface ElementTagNameMap {
-    "character-skill": HTMLCharacterSkillElement;
+    "point-tracker": HTMLPointTrackerElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      "character-skill": JSXElements.CharacterSkillAttributes;
+      "point-tracker": JSXElements.PointTrackerAttributes;
     }
   }
   namespace JSXElements {
-    export interface CharacterSkillAttributes extends HTMLAttributes {
-      attributeBonus?: number;
-      bonus?: number;
-      name?: string;
-      proficient?: boolean;
-      ranks?: number;
+    export interface PointTrackerAttributes extends HTMLAttributes {
+      maximum?: number;
+      minimum?: number;
+      title?: string;
     }
   }
 }

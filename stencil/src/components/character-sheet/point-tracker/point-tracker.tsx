@@ -1,4 +1,4 @@
-import { Component, Prop, State, Listen, Element } from '@stencil/core';
+import { Component, Prop, State, Listen, Element, PropDidChange } from '@stencil/core';
 
 
 @Component({
@@ -22,6 +22,12 @@ export class PointTracker {
     this.setValue(this.currentValue);
   }
 
+  /**
+   * 
+   * @todo - This Might be better as a prop that can be externally altered
+   * Or maybe as both? Not sure.
+   * @param event 
+   */
   @Listen('rpg_setvalue')
   setValueFromEvent(event: CustomEvent) {
     if (event.detail) {
@@ -42,6 +48,12 @@ export class PointTracker {
     if (this.currentValue != event.detail) {
       this.currentValue = event.detail;
     }
+  }
+
+  @PropDidChange('maximum')
+  setMaximum(value: any) {
+    this.maximum = parseInt(value);
+    this.setValue(this.maximum);
   }
 
   componentWillLoad() {

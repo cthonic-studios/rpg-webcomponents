@@ -1,4 +1,4 @@
-import { Component, Prop, Element, State } from "@stencil/core";
+import { Component, Prop, Element, State, Listen } from "@stencil/core";
 
 
 
@@ -8,6 +8,7 @@ import { Component, Prop, Element, State } from "@stencil/core";
 })
 export class CharacterSkill {
   @Prop() proficient: boolean;
+  @Prop() proficiencyBonus: number = 2;
   @Prop() name: string;
   @Prop() ranks: number = 0;
   @Prop() bonus: number = 0;
@@ -24,12 +25,42 @@ export class CharacterSkill {
 
   componentDidLoad() {
     this.renderProficiency();
+    this.recalculateCurrentBonus();
+  }
+
+  @Listen('setRanks')
+  setRanks(event: CustomEvent) {
+    this.ranks = event.detail;
+    this.recalculateCurrentBonus();
+  }
+
+  @Listen('setAttributeBonus')
+  setAttributeBonus(event: CustomEvent) {
+    this.attributeBonus = event.detail;
+    this.recalculateCurrentBonus();
+  }
+
+  @Listen('setBonus')
+  setBonus(event: CustomEvent) {
+    this.bonus = event.detail;
+    this.recalculateCurrentBonus();
   }
 
   toggleProficient() {
     this.isProficient = !this.isProficient;
     console.log(this.isProficient);
     this.renderProficiency();
+    this.recalculateCurrentBonus();
+  }
+
+  recalculateCurrentBonus() {
+    let bonus = this.bonus + this.attributeBonus + this.ranks;
+
+    if (this.proficient) {
+      bonus += this.proficiencyBonus;
+    }
+
+    this.currentBonus = bonus;
   }
 
   renderProficiency() {
