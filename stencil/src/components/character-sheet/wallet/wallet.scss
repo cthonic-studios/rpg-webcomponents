@@ -1,0 +1,19 @@
+rpg-wallet {
+  .wallet-container {
+    display: table;
+
+    border-spacing: 5px;
+
+    .currency {
+      display: table-row;
+
+      span {
+        display: table-cell;
+      }
+    }
+
+    .currency-value {
+      text-align: right;
+    }
+  }
+}

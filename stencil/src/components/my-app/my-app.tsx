@@ -22,6 +22,11 @@ export class MyApp {
     document.querySelector('#strength').dispatchEvent(new CustomEvent('attributeBonus', {detail: 2}));
   }
 
+  gimmeGold() {
+    let wallet: any = document.querySelector('#wallet');
+    wallet.setCurrencyValue('GP', 200);
+  }
+
   render() {
     return (
       <div>
@@ -49,6 +54,7 @@ export class MyApp {
             <button type="button" onClick={() => this.resetCounter('manaTracker')}>Reset MP Count</button>
             <button type="button" onClick={() => this.counterSetDemo()}>Set HP to 100</button>
             <button type="button" onClick={() => this.addBonusToStrength()}>+2 to STR</button>
+            <button type="button" onClick={() => this.gimmeGold()}>Gain Gold</button>
 
             <div class="skill-list">
               <character-skill name="Arcana" proficient={true} />
@@ -56,7 +62,7 @@ export class MyApp {
             </div>
 
             <div class="wallet">
-              <rpg-wallet />
+              <rpg-wallet id="wallet" currencies={['GP', 'SP', 'CP']} currencyValues={[100, 57, 99]}/>
             </div>
           </div>
         </main>

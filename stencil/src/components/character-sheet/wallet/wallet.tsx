@@ -1,4 +1,4 @@
-import { Component, Prop, Method } from '@stencil/core';
+import { Component, Prop, Method, State } from '@stencil/core';
 
 @Component({
   tag: 'rpg-wallet',
@@ -24,15 +24,26 @@ export class Wallet {
     0
   ];
 
+  @State() currentCurrencyValues: number[];
+
   @Method()
   setCurrencyValue(name, value) : void {
     var pos = this.currencies.indexOf(name);
 
-    if (pos <= 0) {
+    if (pos < 0) {
       return;
     }
 
-    this.currencyValues[pos] = value;
+    this.currentCurrencyValues = this.currentCurrencyValues.map((v, idx) => {
+      if (idx === pos) {
+        return value;
+      };
+      return v;
+    });
+  }
+
+  componentWillLoad() {
+    this.currentCurrencyValues = this.currencyValues;
   }
 
   render() {
@@ -44,7 +55,7 @@ export class Wallet {
               {currency}
             </span>
             <span class="currency-value">
-              {this.currencyValues[index]}
+              {this.currentCurrencyValues[index]}
             </span>
           </div>
         )}

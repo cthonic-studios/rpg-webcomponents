@@ -2,8 +2,7 @@ image: node:8.9.3
 
 
 before_script:
-  - npm install -g npm@latest
-  - cd stencil && npm install
+  - cd stencil
   - npm install
 
 test:
