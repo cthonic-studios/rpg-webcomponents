@@ -3,7 +3,7 @@ image: node:9.3.0
 
 before_script:
   - npm install -g npm@5.3
-  - cd stencil
+  - cd stencil && echo `pwd` && npm install
   - npm install
 
 test:
