@@ -8,31 +8,31 @@ import '@stencil/router';
 
 
 import {
-  Wallet as RpgWallet
-} from './components/character-sheet/wallet/wallet';
+  DeathSavingThrow as DeathSavingThrow
+} from './components/5e/death-saving-throw/death-saving-throw';
 
 declare global {
-  interface HTMLRpgWalletElement extends RpgWallet, HTMLElement {
+  interface HTMLDeathSavingThrowElement extends DeathSavingThrow, HTMLElement {
   }
-  var HTMLRpgWalletElement: {
-    prototype: HTMLRpgWalletElement;
-    new (): HTMLRpgWalletElement;
+  var HTMLDeathSavingThrowElement: {
+    prototype: HTMLDeathSavingThrowElement;
+    new (): HTMLDeathSavingThrowElement;
   };
   interface HTMLElementTagNameMap {
-    "rpg-wallet": HTMLRpgWalletElement;
+    "death-saving-throw": HTMLDeathSavingThrowElement;
   }
   interface ElementTagNameMap {
-    "rpg-wallet": HTMLRpgWalletElement;
+    "death-saving-throw": HTMLDeathSavingThrowElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      "rpg-wallet": JSXElements.RpgWalletAttributes;
+      "death-saving-throw": JSXElements.DeathSavingThrowAttributes;
     }
   }
   namespace JSXElements {
-    export interface RpgWalletAttributes extends HTMLAttributes {
-      currencies?: string[];
-      currencyValues?: number[];
+    export interface DeathSavingThrowAttributes extends HTMLAttributes {
+      maxFailures?: number;
+      maxSuccesses?: number;
     }
   }
 }

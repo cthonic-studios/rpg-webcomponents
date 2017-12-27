@@ -1,0 +1,19 @@
+death-saving-throw {
+  text-align: left;
+
+  .counter-container {
+    display: flex;
+  }
+
+  .counter-container > div {
+    flex: 1
+  }
+
+  span.filled, span.unfilled {
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+  }
+}

@@ -68,6 +68,10 @@ export class MyApp {
             <div class="wallet">
               <rpg-wallet id="wallet" currencies={['GP', 'SP', 'CP']} currencyValues={[100, 57, 99]}/>
             </div>
+
+            <div class="death-saving-throw">
+              <death-saving-throw />
+            </div>
           </div>
         </main>
       </div>
