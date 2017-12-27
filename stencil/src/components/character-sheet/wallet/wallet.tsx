@@ -1,4 +1,4 @@
-import { Component, Prop, Method, State } from '@stencil/core';
+import { Component, Prop, Method, State, Listen } from '@stencil/core';
 
 @Component({
   tag: 'rpg-wallet',
@@ -27,8 +27,13 @@ export class Wallet {
   @State() currentCurrencyValues: number[];
 
   @Method()
-  setCurrencyValue(name, value) : void {
-    var pos = this.currencies.indexOf(name);
+  setCurrencyValue(nameOrIndex, value) : void {
+    let pos;
+    if (Number.isInteger(nameOrIndex)) {
+      pos = nameOrIndex;
+    } else {
+      pos = this.currencies.indexOf(nameOrIndex);
+    }
 
     if (pos < 0) {
       return;
@@ -40,6 +45,16 @@ export class Wallet {
       };
       return v;
     });
+  }
+
+  @Listen('valueChanged')
+  valueChanged(ev: CustomEvent) {
+    let targetEl = ev.target as HTMLElement
+
+    let index = targetEl.getAttribute('data-index');
+    this.setCurrencyValue(parseInt(index), ev.detail);
+
+    console.log(this.currentCurrencyValues);
   }
 
   componentWillLoad() {
@@ -55,7 +70,7 @@ export class Wallet {
               {currency}
             </span>
             <span class="currency-value">
-              {this.currentCurrencyValues[index]}
+              <editable-number data-index={index} starting-value={this.currentCurrencyValues[index]}></editable-number>
             </span>
           </div>
         )}

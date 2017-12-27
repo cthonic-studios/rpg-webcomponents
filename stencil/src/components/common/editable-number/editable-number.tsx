@@ -1,4 +1,4 @@
-import { Component, Prop, Event, State, Listen, Element, EventEmitter } from '@stencil/core';
+import { Component, Prop, Event, State, Listen, Element, EventEmitter, PropDidChange } from '@stencil/core';
 
 
 @Component({
@@ -35,9 +35,16 @@ export class EditableNumber {
     this.currentValue = this.startingValue;
   }
 
-  setValue(val) {
+  @PropDidChange('startingValue')
+  svChange(newValue) {
+    this.setValue(newValue, false);
+  }
+
+  setValue(val, emit:boolean = true) {
     this.currentValue = parseInt(val);
-    this.valueChanged.emit(this.currentValue);
+    if (emit) {
+      this.valueChanged.emit(this.currentValue);
+    }
   }
 
   clickToEdit(event) {

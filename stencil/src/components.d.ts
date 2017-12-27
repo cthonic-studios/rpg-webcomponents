@@ -8,30 +8,31 @@ import '@stencil/router';
 
 
 import {
-  MyApp as MyApp
-} from './components/my-app/my-app';
+  Wallet as RpgWallet
+} from './components/character-sheet/wallet/wallet';
 
 declare global {
-  interface HTMLMyAppElement extends MyApp, HTMLElement {
+  interface HTMLRpgWalletElement extends RpgWallet, HTMLElement {
   }
-  var HTMLMyAppElement: {
-    prototype: HTMLMyAppElement;
-    new (): HTMLMyAppElement;
+  var HTMLRpgWalletElement: {
+    prototype: HTMLRpgWalletElement;
+    new (): HTMLRpgWalletElement;
   };
   interface HTMLElementTagNameMap {
-    "my-app": HTMLMyAppElement;
+    "rpg-wallet": HTMLRpgWalletElement;
   }
   interface ElementTagNameMap {
-    "my-app": HTMLMyAppElement;
+    "rpg-wallet": HTMLRpgWalletElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      "my-app": JSXElements.MyAppAttributes;
+      "rpg-wallet": JSXElements.RpgWalletAttributes;
     }
   }
   namespace JSXElements {
-    export interface MyAppAttributes extends HTMLAttributes {
-      
+    export interface RpgWalletAttributes extends HTMLAttributes {
+      currencies?: string[];
+      currencyValues?: number[];
     }
   }
 }

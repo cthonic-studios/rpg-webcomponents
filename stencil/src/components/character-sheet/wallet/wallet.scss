@@ -9,11 +9,17 @@ rpg-wallet {
 
       span {
         display: table-cell;
+        border: 1px solid black;
+        padding: 5px;
       }
     }
 
     .currency-value {
       text-align: right;
+    }
+
+    editable-number .counter-value {
+      border: 0;
     }
   }
 }

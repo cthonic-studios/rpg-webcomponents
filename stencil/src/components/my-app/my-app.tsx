@@ -57,7 +57,11 @@ export class MyApp {
             <button type="button" onClick={() => this.gimmeGold()}>Gain Gold</button>
 
             <div class="skill-list">
+              <character-skill name="Acrobatics" proficient={true} />
+              <character-skill name="Animal Handling" proficient={true} />
               <character-skill name="Arcana" proficient={true} />
+              <character-skill name="Athletics" proficient={true} />
+              <character-skill name="Deception" proficient={true} />
               <character-skill name="Knowledge (History)" proficient={true} />
             </div>
 
