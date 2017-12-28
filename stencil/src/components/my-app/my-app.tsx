@@ -48,6 +48,8 @@ export class MyApp {
             <div class="pointtrack">
               <point-tracker id="hpTracker" title="HP" maximum={10}></point-tracker>
               <point-tracker id="manaTracker" title="MP" maximum={30}></point-tracker>
+              {/* Could technically just use an editable-number here */}
+              <point-tracker id="ac" title="AC" maximum={14} show-incrementors={false}></point-tracker>
             </div>
 
             <button type="button" onClick={() => this.resetCounter('hpTracker')}>Reset HP Count</button>

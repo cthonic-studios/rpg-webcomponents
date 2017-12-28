@@ -10,6 +10,7 @@ export class PointTracker {
   @Prop() title: string;
   @Prop() maximum: number;
   @Prop() minimum: number = 0;
+  @Prop() showIncrementors: boolean = true;
 
   @State() currentValue;
   @State() isEditable:boolean = false;
@@ -92,6 +93,7 @@ export class PointTracker {
 
         <editable-number startingValue={this.currentValue}></editable-number>
 
+        {this.showIncrementors ? 
         <div class="button-container">
           <button class="button-left" onClick={() => this.decrement()}>
             -
@@ -101,6 +103,9 @@ export class PointTracker {
             +
           </button>
         </div>
+        :
+        ""
+        }
       </div>
     );
   }

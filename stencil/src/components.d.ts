@@ -8,31 +8,30 @@ import '@stencil/router';
 
 
 import {
-  DeathSavingThrow as DeathSavingThrow
-} from './components/5e/death-saving-throw/death-saving-throw';
+  MyApp as MyApp
+} from './components/my-app/my-app';
 
 declare global {
-  interface HTMLDeathSavingThrowElement extends DeathSavingThrow, HTMLElement {
+  interface HTMLMyAppElement extends MyApp, HTMLElement {
   }
-  var HTMLDeathSavingThrowElement: {
-    prototype: HTMLDeathSavingThrowElement;
-    new (): HTMLDeathSavingThrowElement;
+  var HTMLMyAppElement: {
+    prototype: HTMLMyAppElement;
+    new (): HTMLMyAppElement;
   };
   interface HTMLElementTagNameMap {
-    "death-saving-throw": HTMLDeathSavingThrowElement;
+    "my-app": HTMLMyAppElement;
   }
   interface ElementTagNameMap {
-    "death-saving-throw": HTMLDeathSavingThrowElement;
+    "my-app": HTMLMyAppElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      "death-saving-throw": JSXElements.DeathSavingThrowAttributes;
+      "my-app": JSXElements.MyAppAttributes;
     }
   }
   namespace JSXElements {
-    export interface DeathSavingThrowAttributes extends HTMLAttributes {
-      maxFailures?: number;
-      maxSuccesses?: number;
+    export interface MyAppAttributes extends HTMLAttributes {
+      
     }
   }
 }
