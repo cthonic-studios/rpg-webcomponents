@@ -43,4 +43,12 @@ my-app {
       flex: 1;
     }
   }
+
+  .death-saving-throw {
+    width: 201px;
+    box-sizing: content-box;
+    padding: 5px 15px 5px 15px;
+    border: 1px solid black;
+    border-radius: 1em;
+  }
 }
