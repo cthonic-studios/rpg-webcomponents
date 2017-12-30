@@ -14,7 +14,7 @@ my-app {
   main .intro {
     width: 100%;
     margin-bottom: 12px;
-    padding-left: 200px;
+    margin-left: 10px;
 
     display: flex;
 
@@ -27,7 +27,8 @@ my-app {
       width: 400px;
       rpg-text-input {
         margin: auto;
-        width: 350px;
+        padding-right: 10px;
+        width: 100%;
       }
     }
 
@@ -40,6 +41,21 @@ my-app {
 
   main > div {
     float: left;
+  }
+
+  main .hit-point-box {
+    margin: auto;
+
+    text-align: left;
+    min-height: 100px;
+    width: 220px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+
+    label {
+      font-size: .7em;
+    }
   }
 
   h1 {
@@ -56,6 +72,7 @@ my-app {
   }
 
   .attributes {
+    margin-left: 10px;
     width: 10%;
   }
 

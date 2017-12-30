@@ -5,6 +5,12 @@ rpg-text-input {
     label {
       padding-right: 5px;
     }
+
+    .text {
+      border-bottom: 1px solid grey;
+      min-width: 100px;
+      display: inline-block;
+    }
   }
 
   .underneath {

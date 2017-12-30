@@ -59,17 +59,17 @@ export class MyApp {
 
           <div class="point-example">
             <div class="pointtrack">
-              <point-tracker id="hpTracker" title="HP" maximum={10}></point-tracker>
+             
               <point-tracker id="manaTracker" title="MP" maximum={30}></point-tracker>
               {/* Could technically just use an editable-number here */}
               <point-tracker id="ac" title="AC" maximum={14} show-incrementors={false}></point-tracker>
             </div>
 
-            <button type="button" onClick={() => this.resetCounter('hpTracker')}>Reset HP Count</button>
-            <button type="button" onClick={() => this.resetCounter('manaTracker')}>Reset MP Count</button>
-            <button type="button" onClick={() => this.counterSetDemo()}>Set HP to 100</button>
-            <button type="button" onClick={() => this.addBonusToStrength()}>+2 to STR</button>
-            <button type="button" onClick={() => this.gimmeGold()}>Gain Gold</button>
+            <div class="hit-point-box">
+              <rpg-text-input label="Hit Point Maximum" style-type="inline"/>
+
+              <point-tracker id="hpTracker" maximum={10}></point-tracker>
+            </div>
 
             <div class="skill-list">
               <character-skill name="Acrobatics" proficient={true} />
@@ -87,6 +87,14 @@ export class MyApp {
             <div class="death-saving-throw">
               <death-saving-throw />
             </div>
+          </div>
+
+          <div class="utility-container">
+            <button type="button" onClick={() => this.resetCounter('hpTracker')}>Reset HP Count</button>
+            <button type="button" onClick={() => this.resetCounter('manaTracker')}>Reset MP Count</button>
+            <button type="button" onClick={() => this.counterSetDemo()}>Set HP to 100</button>
+            <button type="button" onClick={() => this.addBonusToStrength()}>+2 to STR</button>
+            <button type="button" onClick={() => this.gimmeGold()}>Gain Gold</button>
           </div>
         </main>
       </div>
