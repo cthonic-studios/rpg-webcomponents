@@ -19,7 +19,7 @@
   "collection": "dist/collection/collection-manifest.json",
   "browser": "dist/rpg_webcomponents.js",
   "dependencies": {
-    "@stencil/core": "^0.1.0",
+    "@stencil/core": "^0.1.1-0",
     "@stencil/router": "latest"
   },
   "devDependencies": {
