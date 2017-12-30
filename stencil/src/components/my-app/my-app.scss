@@ -11,6 +11,33 @@ my-app {
   main {
   }
 
+  main .intro {
+    width: 100%;
+    margin-bottom: 12px;
+    padding-left: 200px;
+
+    display: flex;
+
+    rpg-text-input {
+      width: 200px;
+      margin-right: 10px;
+    }
+    
+    .intro-container:nth-child(1) {
+      width: 400px;
+      rpg-text-input {
+        margin: auto;
+        width: 350px;
+      }
+    }
+
+    .intro-container {
+      width: 600px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
   main > div {
     float: left;
   }

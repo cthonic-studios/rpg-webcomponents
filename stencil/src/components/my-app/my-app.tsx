@@ -31,10 +31,23 @@ export class MyApp {
     return (
       <div>
         <header>
-          <h1>Stencil App Starter</h1>
+          <h1>RPG Components Example</h1>
         </header>
 
         <main>
+          <div class="intro">
+            <div class="intro-container">
+              <rpg-text-input label="Name" starting-text="cthos" placeholder="name" style-type="underneath"/>
+            </div>
+            <div class="intro-container">
+              <rpg-text-input label="Class & Level" style-type="underneath"/>
+              <rpg-text-input label="Background" style-type="underneath"/>
+              <rpg-text-input label="Player Name" style-type="underneath"/>
+              <rpg-text-input label="Race" style-type="underneath"/>
+              <rpg-text-input label="Alignment" style-type="underneath"/>
+              <rpg-text-input label="Experience Points" style-type="underneath"/>
+            </div>
+          </div>
           <div class="attributes">
             <character-attribute id="strength" name="Strength" attribute-value={10}></character-attribute>
             <character-attribute name="Dexterity" attribute-value={18}></character-attribute>

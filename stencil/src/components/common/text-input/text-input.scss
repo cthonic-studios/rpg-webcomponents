@@ -1,0 +1,40 @@
+rpg-text-input {
+  display: block;
+
+  .inline {
+    label {
+      padding-right: 5px;
+    }
+  }
+
+  .underneath {
+    label {
+      position: relative;
+      top: 22px;
+      font-size: .8em;
+      display: inline;
+    }
+    .text {
+      min-height: 20px;
+      display: block;
+      position: relative;
+      top: -15px;
+      margin: 0;
+      padding: 0;
+      border-bottom: 1px solid grey;
+    }
+    input {
+      display: block;
+      position: relative;
+      top: -15px;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      margin: 0;
+    }
+  }
+
+  label {
+    font-weight: bold;
+  }
+}
