@@ -89,6 +89,10 @@ export class MyApp {
             </div>
           </div>
 
+          <div class="equipment">
+            <rpg-equipment-generic name="Potion of Healing" starting-count="3" />
+          </div>
+
           <div class="utility-container">
             <button type="button" onClick={() => this.resetCounter('hpTracker')}>Reset HP Count</button>
             <button type="button" onClick={() => this.resetCounter('manaTracker')}>Reset MP Count</button>

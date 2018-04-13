@@ -8,30 +8,33 @@ import '@stencil/router';
 
 
 import {
-  MyApp as MyApp
-} from './components/my-app/my-app';
+  EquipmentGeneric as RpgEquipmentGeneric
+} from './components/character-sheet/equipment/generic/equipment-generic';
 
 declare global {
-  interface HTMLMyAppElement extends MyApp, HTMLElement {
+  interface HTMLRpgEquipmentGenericElement extends RpgEquipmentGeneric, HTMLElement {
   }
-  var HTMLMyAppElement: {
-    prototype: HTMLMyAppElement;
-    new (): HTMLMyAppElement;
+  var HTMLRpgEquipmentGenericElement: {
+    prototype: HTMLRpgEquipmentGenericElement;
+    new (): HTMLRpgEquipmentGenericElement;
   };
   interface HTMLElementTagNameMap {
-    "my-app": HTMLMyAppElement;
+    "rpg-equipment-generic": HTMLRpgEquipmentGenericElement;
   }
   interface ElementTagNameMap {
-    "my-app": HTMLMyAppElement;
+    "rpg-equipment-generic": HTMLRpgEquipmentGenericElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      "my-app": JSXElements.MyAppAttributes;
+      "rpg-equipment-generic": JSXElements.RpgEquipmentGenericAttributes;
     }
   }
   namespace JSXElements {
-    export interface MyAppAttributes extends HTMLAttributes {
-      
+    export interface RpgEquipmentGenericAttributes extends HTMLAttributes {
+      name?: string;
+      size?: string;
+      startingCount?: number;
+      weight?: number;
     }
   }
 }
