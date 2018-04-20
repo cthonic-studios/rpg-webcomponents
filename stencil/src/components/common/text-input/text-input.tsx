@@ -51,6 +51,12 @@ export class RpgTextInput {
 
   textChanged(event: Event) {
     this.text = (event.target as HTMLInputElement).value;
+
+    const tEvent = new CustomEvent('rpg_text_changed', {detail: {
+      newText: this.text
+    }});
+
+    this.el.dispatchEvent(tEvent);
   }
 
   render() {

@@ -1,0 +1,10 @@
+rpg-equipment-generic {
+  .equipment-line {
+    width: 100%;
+    display: flex;
+
+    rpg-text-input {
+      flex: 1;
+    }
+  }
+}

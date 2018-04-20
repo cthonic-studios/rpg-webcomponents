@@ -89,8 +89,8 @@ export class MyApp {
             </div>
           </div>
 
-          <div class="equipment">
-            <rpg-equipment-generic name="Potion of Healing" starting-count="3" />
+          <div class="equipment-container">
+            <rpg-equipment-box />
           </div>
 
           <div class="utility-container">
