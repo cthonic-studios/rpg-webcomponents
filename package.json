@@ -19,14 +19,14 @@
   "collection": "dist/collection/collection-manifest.json",
   "browser": "dist/rpg_webcomponents.js",
   "dependencies": {
-    "@stencil/core": "^0.1.6",
-    "@stencil/router": "^0.2.6"
+    "@stencil/core": "^0.18.1",
+    "@stencil/router": "^0.3.3"
   },
   "devDependencies": {
     "@stencil/dev-server": "latest",
-    "@stencil/utils": "latest",
+    "@stencil/utils": "0.0.5",
     "@types/jest": "21.1.8",
-    "jest": "^21.2.1"
+    "jest": "^24.5.0"
   },
   "repository": {
     "type": "git",
