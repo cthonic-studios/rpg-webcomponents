@@ -1,5 +1,5 @@
 {
-  "name": "rpg_webcomponents",
+  "name": "@cthonic-studios/rpg-webcomponents",
   "private": true,
   "version": "0.0.1",
   "description": "RPG Webcomponents",
@@ -19,8 +19,8 @@
   "collection": "dist/collection/collection-manifest.json",
   "browser": "dist/rpg_webcomponents.js",
   "dependencies": {
-    "@stencil/core": "^0.1.1-0",
-    "@stencil/router": "latest"
+    "@stencil/core": "^0.1.6",
+    "@stencil/router": "^0.2.6"
   },
   "devDependencies": {
     "@stencil/dev-server": "latest",
