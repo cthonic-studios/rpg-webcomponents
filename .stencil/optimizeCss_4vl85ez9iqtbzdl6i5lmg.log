@@ -1,0 +1,13 @@
+rpg-wallet .wallet-container {
+  display: table;
+  border-spacing: 5px; }
+  rpg-wallet .wallet-container .currency {
+    display: table-row; }
+    rpg-wallet .wallet-container .currency span {
+      display: table-cell;
+      border: 1px solid black;
+      padding: 5px; }
+  rpg-wallet .wallet-container .currency-value {
+    text-align: right; }
+  rpg-wallet .wallet-container editable-number .counter-value {
+    border: 0; }

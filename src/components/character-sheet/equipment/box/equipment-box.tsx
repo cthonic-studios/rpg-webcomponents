@@ -1,4 +1,4 @@
-import { Component, Prop, State, Method, Element } from "@stencil/core";
+import { Component, Prop, State, Element } from "@stencil/core";
 
 @Component({
   styleUrl: './equipment-box.scss',

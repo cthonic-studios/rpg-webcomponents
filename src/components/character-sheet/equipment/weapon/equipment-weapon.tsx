@@ -1,11 +1,14 @@
-import { Component, Prop, State, Method, Element } from "@stencil/core";
-import { EquipmentGeneric } from "../generic/equipment-generic";
+import { Component } from "@stencil/core";
 
 @Component({
   styleUrl: './equipment-weapon.scss',
   tag: 'rpg-equipment-weapon'
 })
-export class EquipmentWeapon extends EquipmentGeneric {
+export class EquipmentWeapon {
+  
+  public name;
+  public currentCount;
+  public currentWeight;
   
   public render() {
     return (

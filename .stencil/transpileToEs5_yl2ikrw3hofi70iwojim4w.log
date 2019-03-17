@@ -1,0 +1,122 @@
+App.loadBundle('/**:bundle-id:**/', ['exports'], function (exports) {
+    var h = window.App.h;
+    var RpgTextInput = /** @class */ (function () {
+        function RpgTextInput() {
+            this.isEditable = true;
+            this.showLock = true;
+            this.styleType = 'inline';
+            this.isLocked = false;
+            this.inEditMode = false;
+        }
+        RpgTextInput.prototype.closeEditor = function () {
+            if (this.inEditMode) {
+                this.inEditMode = false;
+            }
+        };
+        RpgTextInput.prototype.componentWillLoad = function () {
+            this.text = this.startingText;
+        };
+        RpgTextInput.prototype.clickToEdit = function (event) {
+            var _this = this;
+            if (!this.isEditable || this.isLocked) {
+                return;
+            }
+            if (event.target.tagName == 'INPUT') {
+                return;
+            }
+            this.inEditMode = !this.inEditMode;
+            if (this.inEditMode) {
+                setTimeout(function () {
+                    _this.el.querySelector('input').focus();
+                }, 0);
+            }
+        };
+        RpgTextInput.prototype.textChanged = function (event) {
+            this.text = event.target.value;
+            var tEvent = new CustomEvent('rpg_text_changed', { detail: {
+                    newText: this.text
+                } });
+            this.el.dispatchEvent(tEvent);
+        };
+        RpgTextInput.prototype.render = function () {
+            var _this = this;
+            return (h("div", { class: this.styleType, onClick: function (ev) { return _this.clickToEdit(ev); } }, h("label", { htmlFor: "rpgInput" }, this.label), this.inEditMode ?
+                h("span", null, h("input", { type: "text", id: "rpgInput", placeholder: this.placeholder, value: this.text, onChange: function (ev) { return _this.textChanged(ev); } }))
+                :
+                    h("span", { class: "text" }, this.text)));
+        };
+        Object.defineProperty(RpgTextInput, "is", {
+            get: function () { return "rpg-text-input"; },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(RpgTextInput, "properties", {
+            get: function () {
+                return {
+                    "el": {
+                        "elementRef": true
+                    },
+                    "inEditMode": {
+                        "state": true
+                    },
+                    "isEditable": {
+                        "type": Boolean,
+                        "attr": "is-editable"
+                    },
+                    "isLocked": {
+                        "state": true
+                    },
+                    "label": {
+                        "type": String,
+                        "attr": "label"
+                    },
+                    "placeholder": {
+                        "type": String,
+                        "attr": "placeholder"
+                    },
+                    "showLock": {
+                        "type": Boolean,
+                        "attr": "show-lock"
+                    },
+                    "startingText": {
+                        "type": String,
+                        "attr": "starting-text"
+                    },
+                    "styleType": {
+                        "type": String,
+                        "attr": "style-type"
+                    },
+                    "text": {
+                        "state": true
+                    }
+                };
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(RpgTextInput, "listeners", {
+            get: function () {
+                return [{
+                        "name": "keyup.escape",
+                        "method": "closeEditor"
+                    }, {
+                        "name": "keyup.enter",
+                        "method": "closeEditor"
+                    }, {
+                        "name": "closeEditor",
+                        "method": "closeEditor"
+                    }];
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(RpgTextInput, "style", {
+            get: function () { return "/**style-placeholder:rpg-text-input:**/"; },
+            enumerable: true,
+            configurable: true
+        });
+        return RpgTextInput;
+    }());
+    exports.RpgTextInput = RpgTextInput;
+    Object.defineProperty(exports, '__esModule', { value: true });
+});

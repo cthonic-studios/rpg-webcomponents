@@ -7,12 +7,10 @@
     "dist/"
   ],
   "scripts": {
-    "build": "stencil build --prerender",
-    "dev": "sd concurrent \"stencil build --dev --watch\" \"stencil-dev-server\" ",
-    "serve": "stencil-dev-server",
-    "start": "npm run dev",
-    "test": "jest --no-cache",
-    "test.watch": "jest --watch --no-cache"
+    "build": "stencil build",
+    "start": "stencil build --dev --watch --serve --port $PORT --no-open",
+    "test": "stencil test --spec --e2e",
+    "test.watch": "stencil test --spec --e2e --watchAll"
   },
   "main": "dist/collection/index.js",
   "types": "dist/collection/index.d.ts",
@@ -20,13 +18,14 @@
   "browser": "dist/rpg_webcomponents.js",
   "dependencies": {
     "@stencil/core": "^0.18.1",
-    "@stencil/router": "^0.3.3"
+    "@stencil/router": "^0.3.3",
+    "@stencil/sass": "^0.1.1"
   },
   "devDependencies": {
-    "@stencil/dev-server": "latest",
     "@stencil/utils": "0.0.5",
     "@types/jest": "21.1.8",
-    "jest": "^24.5.0"
+    "jest": "^24.5.0",
+    "workbox-build": "3.4.1"
   },
   "repository": {
     "type": "git",

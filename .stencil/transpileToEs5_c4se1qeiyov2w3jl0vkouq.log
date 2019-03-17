@@ -1,0 +1,116 @@
+App.loadBundle('/**:bundle-id:**/', ['exports'], function (exports) {
+    var h = window.App.h;
+    var EditableNumber = /** @class */ (function () {
+        function EditableNumber() {
+            this.isEditable = false;
+        }
+        EditableNumber.prototype.setValueEvent = function (event) {
+            if (event.detail) {
+                this.setValue(event.detail);
+            }
+        };
+        EditableNumber.prototype.closeEditor = function () {
+            if (this.isEditable) {
+                this.isEditable = false;
+            }
+        };
+        EditableNumber.prototype.componentWillLoad = function () {
+            this.currentValue = this.startingValue;
+        };
+        EditableNumber.prototype.svChange = function (newValue) {
+            this.setValue(newValue, false);
+        };
+        EditableNumber.prototype.setValue = function (val, emit) {
+            if (emit === void 0) { emit = true; }
+            this.currentValue = parseInt(val);
+            if (emit) {
+                this.valueChanged.emit(this.currentValue);
+            }
+        };
+        EditableNumber.prototype.clickToEdit = function (event) {
+            var _this = this;
+            if (event.target.tagName == 'INPUT') {
+                return;
+            }
+            this.isEditable = !this.isEditable;
+            if (this.isEditable) {
+                setTimeout(function () {
+                    _this.el.querySelector('input').focus();
+                }, 0);
+            }
+        };
+        EditableNumber.prototype.render = function () {
+            var _this = this;
+            return (h("div", { class: "editable-number-container", onClick: function (event) { return _this.clickToEdit(event); } }, !this.isEditable
+                ? h("span", { id: "counterValue", class: "counter-value" }, this.currentValue)
+                : h("input", { class: "enter-counter-value", value: this.currentValue, onChange: function (event) { return _this.setValue(event.target.value); } })));
+        };
+        Object.defineProperty(EditableNumber, "is", {
+            get: function () { return "editable-number"; },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(EditableNumber, "properties", {
+            get: function () {
+                return {
+                    "currentValue": {
+                        "state": true
+                    },
+                    "el": {
+                        "elementRef": true
+                    },
+                    "isEditable": {
+                        "state": true
+                    },
+                    "startingValue": {
+                        "type": Number,
+                        "attr": "starting-value",
+                        "watchCallbacks": ["svChange"]
+                    }
+                };
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(EditableNumber, "events", {
+            get: function () {
+                return [{
+                        "name": "valueChanged",
+                        "method": "valueChanged",
+                        "bubbles": true,
+                        "cancelable": true,
+                        "composed": true
+                    }];
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(EditableNumber, "listeners", {
+            get: function () {
+                return [{
+                        "name": "rpg_setvalue",
+                        "method": "setValueEvent"
+                    }, {
+                        "name": "keyup.escape",
+                        "method": "closeEditor"
+                    }, {
+                        "name": "keyup.enter",
+                        "method": "closeEditor"
+                    }, {
+                        "name": "closeEditor",
+                        "method": "closeEditor"
+                    }];
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(EditableNumber, "style", {
+            get: function () { return "/**style-placeholder:editable-number:**/"; },
+            enumerable: true,
+            configurable: true
+        });
+        return EditableNumber;
+    }());
+    exports.EditableNumber = EditableNumber;
+    Object.defineProperty(exports, '__esModule', { value: true });
+});
