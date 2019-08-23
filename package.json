@@ -17,15 +17,8 @@
   "collection": "dist/collection/collection-manifest.json",
   "browser": "dist/rpg_webcomponents.js",
   "dependencies": {
-    "@stencil/core": "^0.18.1",
-    "@stencil/router": "^0.3.3",
-    "@stencil/sass": "^0.1.1"
-  },
-  "devDependencies": {
-    "@stencil/utils": "0.0.5",
-    "@types/jest": "21.1.8",
-    "jest": "^24.5.0",
-    "workbox-build": "3.4.1"
+    "@stencil/core": "^1.3.1",
+    "@stencil/sass": "^1.0.1"
   },
   "repository": {
     "type": "git",
@@ -49,5 +42,8 @@
       "json",
       "jsx"
     ]
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.18"
   }
 }

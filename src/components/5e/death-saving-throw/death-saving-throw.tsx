@@ -1,4 +1,4 @@
-import { Component, Prop, State, Method } from '@stencil/core';
+import { Component, Prop, State, Method, h } from '@stencil/core';
 
 /**
  * @todo: The dot display could probably be its own sub-component.

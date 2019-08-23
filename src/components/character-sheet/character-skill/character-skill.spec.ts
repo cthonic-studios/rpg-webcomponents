@@ -1,4 +1,3 @@
-import { render } from '@stencil/core/testing';
 import { CharacterSkill } from './character-skill';
 
 describe('character-skill', () => {
@@ -8,13 +7,5 @@ describe('character-skill', () => {
 
   describe('rendering', () => {
     let element;
-
-    beforeEach(async () => {
-      element = await render({
-        components: [CharacterSkill],
-        html: '<character-skill />'
-      });
-      console.log(element);
-    });
   });
 });
