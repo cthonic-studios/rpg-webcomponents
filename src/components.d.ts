@@ -5,23 +5,10 @@
  */
 
 
-import '@stencil/core';
-
-
+import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
-
-  interface DeathSavingThrow {
-    'clearCounts': () => void;
-    'maxFailures': number;
-    'maxSuccesses': number;
-  }
-  interface DeathSavingThrowAttributes extends StencilHTMLAttributes {
-    'maxFailures'?: number;
-    'maxSuccesses'?: number;
-  }
-
   interface CharacterAttribute {
     'attributeCap': number;
     'attributeValue': number;
@@ -30,15 +17,6 @@ export namespace Components {
     'showBonus': boolean;
     'styleType': string;
   }
-  interface CharacterAttributeAttributes extends StencilHTMLAttributes {
-    'attributeCap'?: number;
-    'attributeValue'?: number;
-    'bonusCalculation'?: Function;
-    'name'?: string;
-    'showBonus'?: boolean;
-    'styleType'?: string;
-  }
-
   interface CharacterSkill {
     'attributeBonus': number;
     'bonus': number;
@@ -47,78 +25,33 @@ export namespace Components {
     'proficient': boolean;
     'ranks': number;
   }
-  interface CharacterSkillAttributes extends StencilHTMLAttributes {
-    'attributeBonus'?: number;
-    'bonus'?: number;
-    'name'?: string;
-    'proficiencyBonus'?: number;
-    'proficient'?: boolean;
-    'ranks'?: number;
+  interface DeathSavingThrow {
+    'clearCounts': () => Promise<void>;
+    'maxFailures': number;
+    'maxSuccesses': number;
   }
-
+  interface EditableNumber {
+    'startingValue': number;
+  }
+  interface MyApp {}
+  interface PointTracker {
+    'maximum': number;
+    'minimum': number;
+    'pointTitle': string;
+    'showIncrementors': boolean;
+  }
   interface RpgEquipmentBox {
     'numGeneric': number;
     'numWeapons': number;
   }
-  interface RpgEquipmentBoxAttributes extends StencilHTMLAttributes {
-    'numGeneric'?: number;
-    'numWeapons'?: number;
-  }
-
   interface RpgEquipmentGeneric {
     'name': string;
     'size': string;
     'startingCount': number;
-    'useItem': () => boolean;
+    'useItem': () => Promise<boolean>;
     'weight': number;
   }
-  interface RpgEquipmentGenericAttributes extends StencilHTMLAttributes {
-    'name'?: string;
-    'size'?: string;
-    'startingCount'?: number;
-    'weight'?: number;
-  }
-
   interface RpgEquipmentWeapon {}
-  interface RpgEquipmentWeaponAttributes extends StencilHTMLAttributes {}
-
-  interface PointTracker {
-    'maximum': number;
-    'minimum': number;
-    'showIncrementors': boolean;
-    'title': string;
-  }
-  interface PointTrackerAttributes extends StencilHTMLAttributes {
-    'maximum'?: number;
-    'minimum'?: number;
-    'showIncrementors'?: boolean;
-    'title'?: string;
-  }
-
-  interface RpgWallet {
-    /**
-    * This is maintained in 2 values to preserve the order.
-    */
-    'currencies': string[];
-    'currencyValues': number[];
-    'setCurrencyValue': (nameOrIndex: any, value: any) => void;
-  }
-  interface RpgWalletAttributes extends StencilHTMLAttributes {
-    /**
-    * This is maintained in 2 values to preserve the order.
-    */
-    'currencies'?: string[];
-    'currencyValues'?: number[];
-  }
-
-  interface EditableNumber {
-    'startingValue': number;
-  }
-  interface EditableNumberAttributes extends StencilHTMLAttributes {
-    'onValueChanged'?: (event: CustomEvent) => void;
-    'startingValue'?: number;
-  }
-
   interface RpgTextInput {
     'isEditable': boolean;
     'label': string;
@@ -127,54 +60,18 @@ export namespace Components {
     'startingText': string;
     'styleType': string;
   }
-  interface RpgTextInputAttributes extends StencilHTMLAttributes {
-    'isEditable'?: boolean;
-    'label'?: string;
-    'placeholder'?: string;
-    'showLock'?: boolean;
-    'startingText'?: string;
-    'styleType'?: string;
+  interface RpgWallet {
+    /**
+    * This is maintained in 2 values to preserve the order.
+    */
+    'currencies': string[];
+    'currencyValues': number[];
+    'setCurrencyValue': (nameOrIndex: any, value: any) => Promise<any>;
   }
-
-  interface MyApp {}
-  interface MyAppAttributes extends StencilHTMLAttributes {}
 }
 
 declare global {
-  interface StencilElementInterfaces {
-    'DeathSavingThrow': Components.DeathSavingThrow;
-    'CharacterAttribute': Components.CharacterAttribute;
-    'CharacterSkill': Components.CharacterSkill;
-    'RpgEquipmentBox': Components.RpgEquipmentBox;
-    'RpgEquipmentGeneric': Components.RpgEquipmentGeneric;
-    'RpgEquipmentWeapon': Components.RpgEquipmentWeapon;
-    'PointTracker': Components.PointTracker;
-    'RpgWallet': Components.RpgWallet;
-    'EditableNumber': Components.EditableNumber;
-    'RpgTextInput': Components.RpgTextInput;
-    'MyApp': Components.MyApp;
-  }
 
-  interface StencilIntrinsicElements {
-    'death-saving-throw': Components.DeathSavingThrowAttributes;
-    'character-attribute': Components.CharacterAttributeAttributes;
-    'character-skill': Components.CharacterSkillAttributes;
-    'rpg-equipment-box': Components.RpgEquipmentBoxAttributes;
-    'rpg-equipment-generic': Components.RpgEquipmentGenericAttributes;
-    'rpg-equipment-weapon': Components.RpgEquipmentWeaponAttributes;
-    'point-tracker': Components.PointTrackerAttributes;
-    'rpg-wallet': Components.RpgWalletAttributes;
-    'editable-number': Components.EditableNumberAttributes;
-    'rpg-text-input': Components.RpgTextInputAttributes;
-    'my-app': Components.MyAppAttributes;
-  }
-
-
-  interface HTMLDeathSavingThrowElement extends Components.DeathSavingThrow, HTMLStencilElement {}
-  var HTMLDeathSavingThrowElement: {
-    prototype: HTMLDeathSavingThrowElement;
-    new (): HTMLDeathSavingThrowElement;
-  };
 
   interface HTMLCharacterAttributeElement extends Components.CharacterAttribute, HTMLStencilElement {}
   var HTMLCharacterAttributeElement: {
@@ -186,6 +83,30 @@ declare global {
   var HTMLCharacterSkillElement: {
     prototype: HTMLCharacterSkillElement;
     new (): HTMLCharacterSkillElement;
+  };
+
+  interface HTMLDeathSavingThrowElement extends Components.DeathSavingThrow, HTMLStencilElement {}
+  var HTMLDeathSavingThrowElement: {
+    prototype: HTMLDeathSavingThrowElement;
+    new (): HTMLDeathSavingThrowElement;
+  };
+
+  interface HTMLEditableNumberElement extends Components.EditableNumber, HTMLStencilElement {}
+  var HTMLEditableNumberElement: {
+    prototype: HTMLEditableNumberElement;
+    new (): HTMLEditableNumberElement;
+  };
+
+  interface HTMLMyAppElement extends Components.MyApp, HTMLStencilElement {}
+  var HTMLMyAppElement: {
+    prototype: HTMLMyAppElement;
+    new (): HTMLMyAppElement;
+  };
+
+  interface HTMLPointTrackerElement extends Components.PointTracker, HTMLStencilElement {}
+  var HTMLPointTrackerElement: {
+    prototype: HTMLPointTrackerElement;
+    new (): HTMLPointTrackerElement;
   };
 
   interface HTMLRpgEquipmentBoxElement extends Components.RpgEquipmentBox, HTMLStencilElement {}
@@ -206,10 +127,10 @@ declare global {
     new (): HTMLRpgEquipmentWeaponElement;
   };
 
-  interface HTMLPointTrackerElement extends Components.PointTracker, HTMLStencilElement {}
-  var HTMLPointTrackerElement: {
-    prototype: HTMLPointTrackerElement;
-    new (): HTMLPointTrackerElement;
+  interface HTMLRpgTextInputElement extends Components.RpgTextInput, HTMLStencilElement {}
+  var HTMLRpgTextInputElement: {
+    prototype: HTMLRpgTextInputElement;
+    new (): HTMLRpgTextInputElement;
   };
 
   interface HTMLRpgWalletElement extends Components.RpgWallet, HTMLStencilElement {}
@@ -217,60 +138,102 @@ declare global {
     prototype: HTMLRpgWalletElement;
     new (): HTMLRpgWalletElement;
   };
-
-  interface HTMLEditableNumberElement extends Components.EditableNumber, HTMLStencilElement {}
-  var HTMLEditableNumberElement: {
-    prototype: HTMLEditableNumberElement;
-    new (): HTMLEditableNumberElement;
-  };
-
-  interface HTMLRpgTextInputElement extends Components.RpgTextInput, HTMLStencilElement {}
-  var HTMLRpgTextInputElement: {
-    prototype: HTMLRpgTextInputElement;
-    new (): HTMLRpgTextInputElement;
-  };
-
-  interface HTMLMyAppElement extends Components.MyApp, HTMLStencilElement {}
-  var HTMLMyAppElement: {
-    prototype: HTMLMyAppElement;
-    new (): HTMLMyAppElement;
-  };
-
   interface HTMLElementTagNameMap {
-    'death-saving-throw': HTMLDeathSavingThrowElement
-    'character-attribute': HTMLCharacterAttributeElement
-    'character-skill': HTMLCharacterSkillElement
-    'rpg-equipment-box': HTMLRpgEquipmentBoxElement
-    'rpg-equipment-generic': HTMLRpgEquipmentGenericElement
-    'rpg-equipment-weapon': HTMLRpgEquipmentWeaponElement
-    'point-tracker': HTMLPointTrackerElement
-    'rpg-wallet': HTMLRpgWalletElement
-    'editable-number': HTMLEditableNumberElement
-    'rpg-text-input': HTMLRpgTextInputElement
-    'my-app': HTMLMyAppElement
-  }
-
-  interface ElementTagNameMap {
-    'death-saving-throw': HTMLDeathSavingThrowElement;
     'character-attribute': HTMLCharacterAttributeElement;
     'character-skill': HTMLCharacterSkillElement;
+    'death-saving-throw': HTMLDeathSavingThrowElement;
+    'editable-number': HTMLEditableNumberElement;
+    'my-app': HTMLMyAppElement;
+    'point-tracker': HTMLPointTrackerElement;
     'rpg-equipment-box': HTMLRpgEquipmentBoxElement;
     'rpg-equipment-generic': HTMLRpgEquipmentGenericElement;
     'rpg-equipment-weapon': HTMLRpgEquipmentWeaponElement;
-    'point-tracker': HTMLPointTrackerElement;
-    'rpg-wallet': HTMLRpgWalletElement;
-    'editable-number': HTMLEditableNumberElement;
     'rpg-text-input': HTMLRpgTextInputElement;
-    'my-app': HTMLMyAppElement;
+    'rpg-wallet': HTMLRpgWalletElement;
   }
-
-
-  export namespace JSX {
-    export interface Element {}
-    export interface IntrinsicElements extends StencilIntrinsicElements {
-      [tagName: string]: any;
-    }
-  }
-  export interface HTMLAttributes extends StencilHTMLAttributes {}
-
 }
+
+declare namespace LocalJSX {
+  interface CharacterAttribute extends JSXBase.HTMLAttributes<HTMLCharacterAttributeElement> {
+    'attributeCap'?: number;
+    'attributeValue'?: number;
+    'bonusCalculation'?: Function;
+    'name'?: string;
+    'showBonus'?: boolean;
+    'styleType'?: string;
+  }
+  interface CharacterSkill extends JSXBase.HTMLAttributes<HTMLCharacterSkillElement> {
+    'attributeBonus'?: number;
+    'bonus'?: number;
+    'name'?: string;
+    'proficiencyBonus'?: number;
+    'proficient'?: boolean;
+    'ranks'?: number;
+  }
+  interface DeathSavingThrow extends JSXBase.HTMLAttributes<HTMLDeathSavingThrowElement> {
+    'maxFailures'?: number;
+    'maxSuccesses'?: number;
+  }
+  interface EditableNumber extends JSXBase.HTMLAttributes<HTMLEditableNumberElement> {
+    'onValueChanged'?: (event: CustomEvent<any>) => void;
+    'startingValue'?: number;
+  }
+  interface MyApp extends JSXBase.HTMLAttributes<HTMLMyAppElement> {}
+  interface PointTracker extends JSXBase.HTMLAttributes<HTMLPointTrackerElement> {
+    'maximum'?: number;
+    'minimum'?: number;
+    'pointTitle'?: string;
+    'showIncrementors'?: boolean;
+  }
+  interface RpgEquipmentBox extends JSXBase.HTMLAttributes<HTMLRpgEquipmentBoxElement> {
+    'numGeneric'?: number;
+    'numWeapons'?: number;
+  }
+  interface RpgEquipmentGeneric extends JSXBase.HTMLAttributes<HTMLRpgEquipmentGenericElement> {
+    'name'?: string;
+    'size'?: string;
+    'startingCount'?: number;
+    'weight'?: number;
+  }
+  interface RpgEquipmentWeapon extends JSXBase.HTMLAttributes<HTMLRpgEquipmentWeaponElement> {}
+  interface RpgTextInput extends JSXBase.HTMLAttributes<HTMLRpgTextInputElement> {
+    'isEditable'?: boolean;
+    'label'?: string;
+    'placeholder'?: string;
+    'showLock'?: boolean;
+    'startingText'?: string;
+    'styleType'?: string;
+  }
+  interface RpgWallet extends JSXBase.HTMLAttributes<HTMLRpgWalletElement> {
+    /**
+    * This is maintained in 2 values to preserve the order.
+    */
+    'currencies'?: string[];
+    'currencyValues'?: number[];
+  }
+
+  interface IntrinsicElements {
+    'character-attribute': CharacterAttribute;
+    'character-skill': CharacterSkill;
+    'death-saving-throw': DeathSavingThrow;
+    'editable-number': EditableNumber;
+    'my-app': MyApp;
+    'point-tracker': PointTracker;
+    'rpg-equipment-box': RpgEquipmentBox;
+    'rpg-equipment-generic': RpgEquipmentGeneric;
+    'rpg-equipment-weapon': RpgEquipmentWeapon;
+    'rpg-text-input': RpgTextInput;
+    'rpg-wallet': RpgWallet;
+  }
+}
+
+export { LocalJSX as JSX };
+
+
+declare module "@stencil/core" {
+  export namespace JSX {
+    interface IntrinsicElements extends LocalJSX.IntrinsicElements {}
+  }
+}
+
+

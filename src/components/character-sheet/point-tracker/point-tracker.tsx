@@ -1,4 +1,4 @@
-import { Component, Prop, State, Listen, Element, PropDidChange } from '@stencil/core';
+import { Component, Prop, State, Listen, Element, Watch, h } from '@stencil/core';
 
 
 @Component({
@@ -7,7 +7,7 @@ import { Component, Prop, State, Listen, Element, PropDidChange } from '@stencil
 })
 export class PointTracker {
 
-  @Prop() title: string;
+  @Prop() pointTitle: string;
   @Prop() maximum: number;
   @Prop() minimum: number = 0;
   @Prop() showIncrementors: boolean = true;
@@ -36,9 +36,12 @@ export class PointTracker {
     }
   }
 
-  @Listen('keyup.escape')
-  @Listen('keyup.enter')
-  closeEditor() {
+  @Listen('keyup')
+  closeEditor(event: KeyboardEvent) {
+    if (event.key !== 'Escape' && event.key !== 'Enter') {
+      return;
+    }
+
     if (this.isEditable) {
       this.isEditable = false;
     }
@@ -51,7 +54,7 @@ export class PointTracker {
     }
   }
 
-  @PropDidChange('maximum')
+  @Watch('maximum')
   setMaximum(value: any) {
     this.maximum = parseInt(value);
     this.setValue(this.maximum);
@@ -89,7 +92,7 @@ export class PointTracker {
   render() {
     return (
       <div class="container">
-        <h2>{this.title}</h2>
+        <h2>{this.pointTitle}</h2>
 
         <editable-number startingValue={this.currentValue}></editable-number>
 

@@ -1,4 +1,4 @@
-import { Component, Prop, Event, State, Listen, Element, EventEmitter, PropDidChange } from '@stencil/core';
+import { Component, Prop, Event, State, Listen, Element, EventEmitter, h, Watch } from '@stencil/core';
 
 
 @Component({
@@ -22,8 +22,7 @@ export class EditableNumber {
   @State() currentValue: number;
   @State() isEditable: boolean = false;
 
-  @Listen('keyup.escape')
-  @Listen('keyup.enter')
+  // TODO: Readd Keyboard events.
   @Listen('closeEditor')
   closeEditor() {
     if (this.isEditable) {
@@ -35,7 +34,7 @@ export class EditableNumber {
     this.currentValue = this.startingValue;
   }
 
-  @PropDidChange('startingValue')
+  @Watch('startingValue')
   svChange(newValue) {
     this.setValue(newValue, false);
   }

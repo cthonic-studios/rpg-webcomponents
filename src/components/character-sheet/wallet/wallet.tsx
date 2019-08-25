@@ -1,4 +1,4 @@
-import { Component, Prop, Method, State, Listen } from '@stencil/core';
+import { Component, Prop, Method, State, Listen, h } from '@stencil/core';
 
 @Component({
   tag: 'rpg-wallet',
@@ -27,7 +27,7 @@ export class Wallet {
   @State() currentCurrencyValues: number[];
 
   @Method()
-  setCurrencyValue(nameOrIndex, value) : void {
+  public async setCurrencyValue(nameOrIndex, value) : Promise<any> {
     let pos;
     if (Number.isInteger(nameOrIndex)) {
       pos = nameOrIndex;

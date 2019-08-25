@@ -1,4 +1,4 @@
-import { Component, Prop, State, Element, Listen } from '@stencil/core';
+import { Component, Prop, State, Element, Listen, h } from '@stencil/core';
 
 @Component({
   styleUrl: './text-input.scss',
@@ -18,8 +18,7 @@ export class RpgTextInput {
   @State() inEditMode: boolean = false;
   @State() text: string;
 
-  @Listen('keyup.escape')
-  @Listen('keyup.enter')
+  // TODO: Readd key event.
   @Listen('closeEditor')
   closeEditor() {
     if (this.inEditMode) {

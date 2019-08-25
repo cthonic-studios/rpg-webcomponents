@@ -12,10 +12,10 @@
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll"
   },
-  "main": "dist/collection/index.js",
-  "types": "dist/collection/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/types/components.d.ts",
   "collection": "dist/collection/collection-manifest.json",
-  "browser": "dist/rpg_webcomponents.js",
+  "module": "dist/index.mjs",
   "dependencies": {
     "@stencil/core": "^1.3.1",
     "@stencil/sass": "^1.0.1"

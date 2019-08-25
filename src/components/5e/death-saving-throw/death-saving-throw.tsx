@@ -15,7 +15,7 @@ export class DeathSavingThrow {
   @State() numFailures: number = 0;
 
   @Method()
-  clearCounts() {
+  public async clearCounts() {
     this.numSuccesses = 0;
     this.numFailures = 0;
   }

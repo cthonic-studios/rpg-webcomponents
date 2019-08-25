@@ -18,7 +18,7 @@ export class EquipmentGeneric {
   @State() itemWeight: number;
 
   @Method()
-  useItem() {
+  public async useItem() {
     this.currentCount = this.currentCount - 1;
 
     if (this.currentCount < 0) {
