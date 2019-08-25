@@ -22,9 +22,13 @@ export class EditableNumber {
   @State() currentValue: number;
   @State() isEditable: boolean = false;
 
-  // TODO: Readd Keyboard events.
   @Listen('closeEditor')
-  closeEditor() {
+  @Listen('keyup')
+  closeEditor(e: any) {
+    if (e.key && !(e.key === 'Enter' || e.key === 'Escape')) {
+      return;
+    }
+
     if (this.isEditable) {
       this.isEditable = false;
     }

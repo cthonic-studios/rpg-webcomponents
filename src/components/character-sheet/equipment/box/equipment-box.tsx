@@ -25,9 +25,16 @@ export class EquipmentBox {
     }
     return (
       <div class='equipment-box'>
+        <h3>Weapons</h3>
       {
         weaponLines.map(el => el)
       }
+      <h3>General Equipment</h3>
+      <div class="equipment-titles">
+        <div>Name</div>
+        <div>Amount</div>
+        <div>Weight</div>
+      </div>
       {
         genericLines.map(el => el)
       }

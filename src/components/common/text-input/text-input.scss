@@ -1,7 +1,9 @@
-rpg-text-input {
+:host {
   display: block;
 
   .inline {
+    display: flex;
+
     label {
       padding-right: 5px;
     }
@@ -9,7 +11,9 @@ rpg-text-input {
     .text {
       border-bottom: 1px solid grey;
       min-width: 100px;
-      display: inline-block;
+      width: 100%;
+      display: block;
+      min-height: 24px;
     }
   }
 

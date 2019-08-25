@@ -2,7 +2,8 @@ import { Component, Prop, State, Element, Listen, h } from '@stencil/core';
 
 @Component({
   styleUrl: './text-input.scss',
-  tag: 'rpg-text-input'
+  tag: 'rpg-text-input',
+  shadow: true
 })
 export class RpgTextInput {
   @Prop() label: string;
@@ -18,9 +19,13 @@ export class RpgTextInput {
   @State() inEditMode: boolean = false;
   @State() text: string;
 
-  // TODO: Readd key event.
   @Listen('closeEditor')
-  closeEditor() {
+  @Listen('keyup')
+  closeEditor(e: any) {
+    if (e.key && !(e.key === 'Enter' || e.key === 'Escape')) {
+      return;
+    }
+
     if (this.inEditMode) {
       this.inEditMode = false;
     }
@@ -61,11 +66,11 @@ export class RpgTextInput {
   render() {
     return (
       <div class={this.styleType} onClick={(ev) => this.clickToEdit(ev)}>
-        <label htmlFor="rpgInput">
+        {this.label ? <label htmlFor="rpgInput">
           {this.label}
-        </label>
+        </label> : ''}
         {this.inEditMode ?
-          <span>
+          <span class="text">
           <input type="text" id="rpgInput" placeholder={this.placeholder} value={this.text} onChange={(ev) => this.textChanged(ev)}/>
           </span>
           :

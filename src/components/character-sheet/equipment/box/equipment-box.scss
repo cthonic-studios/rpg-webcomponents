@@ -1,0 +1,16 @@
+rpg-equipment-box {
+  display: block;
+  
+  .equipment-box {
+    width: 100%;
+  }
+  .equipment-titles {
+    display: flex;
+    width: 95%;
+
+    div {
+      width: 33%;
+      flex: 1;
+    }
+  }
+}
