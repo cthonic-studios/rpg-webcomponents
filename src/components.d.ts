@@ -53,8 +53,10 @@ export namespace Components {
   }
   interface RpgEquipmentWeapon {}
   interface RpgTextInput {
+    'closeEditor': () => Promise<void>;
     'isEditable': boolean;
     'label': string;
+    'openEditor': () => Promise<void>;
     'placeholder': string;
     'showLock': boolean;
     'startingText': string;
@@ -199,6 +201,7 @@ declare namespace LocalJSX {
   interface RpgTextInput extends JSXBase.HTMLAttributes<HTMLRpgTextInputElement> {
     'isEditable'?: boolean;
     'label'?: string;
+    'onEditorSelected'?: (event: CustomEvent<any>) => void;
     'placeholder'?: string;
     'showLock'?: boolean;
     'startingText'?: string;
