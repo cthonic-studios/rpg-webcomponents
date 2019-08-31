@@ -87,6 +87,10 @@ export class MyApp {
             <div class="death-saving-throw">
               <death-saving-throw />
             </div>
+
+            <div class="spell-line">
+              <rpg-spell-line spell-name="Burning Hands"></rpg-spell-line>
+            </div>
           </div>
 
           <div class="equipment-container">

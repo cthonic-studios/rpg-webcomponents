@@ -53,6 +53,11 @@ export namespace Components {
     'weight': number;
   }
   interface RpgEquipmentWeapon {}
+  interface RpgSpellLine {
+    'castSpell': () => Promise<any>;
+    'components': string[];
+    'spellName': string;
+  }
   interface RpgTextInput {
     'closeEditor': () => Promise<void>;
     'isEditable': boolean;
@@ -130,6 +135,12 @@ declare global {
     new (): HTMLRpgEquipmentWeaponElement;
   };
 
+  interface HTMLRpgSpellLineElement extends Components.RpgSpellLine, HTMLStencilElement {}
+  var HTMLRpgSpellLineElement: {
+    prototype: HTMLRpgSpellLineElement;
+    new (): HTMLRpgSpellLineElement;
+  };
+
   interface HTMLRpgTextInputElement extends Components.RpgTextInput, HTMLStencilElement {}
   var HTMLRpgTextInputElement: {
     prototype: HTMLRpgTextInputElement;
@@ -151,6 +162,7 @@ declare global {
     'rpg-equipment-box': HTMLRpgEquipmentBoxElement;
     'rpg-equipment-generic': HTMLRpgEquipmentGenericElement;
     'rpg-equipment-weapon': HTMLRpgEquipmentWeaponElement;
+    'rpg-spell-line': HTMLRpgSpellLineElement;
     'rpg-text-input': HTMLRpgTextInputElement;
     'rpg-wallet': HTMLRpgWalletElement;
   }
@@ -200,6 +212,11 @@ declare namespace LocalJSX {
     'weight'?: number;
   }
   interface RpgEquipmentWeapon extends JSXBase.HTMLAttributes<HTMLRpgEquipmentWeaponElement> {}
+  interface RpgSpellLine extends JSXBase.HTMLAttributes<HTMLRpgSpellLineElement> {
+    'components'?: string[];
+    'onDidCastSpell'?: (event: CustomEvent<any>) => void;
+    'spellName'?: string;
+  }
   interface RpgTextInput extends JSXBase.HTMLAttributes<HTMLRpgTextInputElement> {
     'isEditable'?: boolean;
     'label'?: string;
@@ -227,6 +244,7 @@ declare namespace LocalJSX {
     'rpg-equipment-box': RpgEquipmentBox;
     'rpg-equipment-generic': RpgEquipmentGeneric;
     'rpg-equipment-weapon': RpgEquipmentWeapon;
+    'rpg-spell-line': RpgSpellLine;
     'rpg-text-input': RpgTextInput;
     'rpg-wallet': RpgWallet;
   }
