@@ -1,4 +1,4 @@
-import { Component, Prop, State, Element, h } from "@stencil/core";
+import { Component, Prop, State, Element, h, Listen } from "@stencil/core";
 
 @Component({
   styleUrl: './equipment-box.scss',
@@ -11,6 +11,18 @@ export class EquipmentBox {
   @State() totalWeight: number = 0;
 
   @Element() el;
+
+  @Listen('reachedEndOfEquipment')
+  protected onReachedEndOfLine(ev: CustomEvent) {
+    console.log(ev.detail);
+    const sibling = ev.detail.nextElementSibling;
+
+    console.log(sibling)
+
+    if (sibling && sibling.tagName.toLowerCase() === 'rpg-equipment-generic') {
+      sibling.openItemField();
+    }
+  }
 
   public render() {
     let genericLines: any[] = [];

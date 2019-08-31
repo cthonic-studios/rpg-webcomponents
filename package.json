@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "build": "stencil build",
-    "start": "stencil build --dev --watch --serve --port $PORT --no-open",
+    "start": "stencil build --dev --watch --serve --port 3333 --no-open",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll"
   },

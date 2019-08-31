@@ -1,4 +1,4 @@
-import { Component, Prop, State, Element, Listen, h } from '@stencil/core';
+import { Component, Prop, State, Element, Listen, h, EventEmitter, Event, Method } from '@stencil/core';
 
 @Component({
   styleUrl: './text-input.scss',
@@ -12,6 +12,8 @@ export class RpgTextInput {
   @Prop() placeholder: string;
   @Prop() startingText: string;
   @Prop() styleType: string = 'inline';
+
+  @Event() editorSelected: EventEmitter<any>;
   
   @Element() el;
 
@@ -21,14 +23,34 @@ export class RpgTextInput {
 
   @Listen('closeEditor')
   @Listen('keyup')
-  closeEditor(e: any) {
-    if (e.key && !(e.key === 'Enter' || e.key === 'Escape')) {
+  onCloseEditor(e: any = null) {
+    if (e && e.key && !(e.key === 'Enter' || e.key === 'Escape')) {
       return;
     }
 
     if (this.inEditMode) {
       this.inEditMode = false;
     }
+  }
+
+  @Method()
+  public async closeEditor() {
+    this.inEditMode = false;
+  }
+
+  @Method()
+  public async openEditor() {
+    this.inEditMode = true;
+
+    this.editorSelected.emit(this.el);
+
+    setTimeout(() => {
+      const inp = this.el.shadowRoot.querySelector('input');
+      inp.focus();
+      inp.select();
+    }, 5);
+
+    this.editorSelected.emit(this.el);
   }
 
   componentWillLoad() {
@@ -43,14 +65,7 @@ export class RpgTextInput {
       return;
     }
 
-    this.inEditMode = !this.inEditMode;
-
-    // This is so the input will exist (could also do it in componentDidUpdate?)
-    if (this.inEditMode) {
-      setTimeout(() => {
-        this.el.querySelector('input').focus()
-      }, 0);
-    }
+    this.inEditMode ? this.closeEditor() : this.openEditor();
   }
 
   textChanged(event: Event) {

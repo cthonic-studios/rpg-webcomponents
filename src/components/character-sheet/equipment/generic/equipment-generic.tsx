@@ -1,8 +1,9 @@
-import { Component, Prop, State, Method, Element, h } from "@stencil/core";
+import { Component, Prop, State, Method, Element, h, Listen, EventEmitter, Event } from "@stencil/core";
 
 @Component({
   styleUrl: './equipment-generic.scss',
-  tag: 'rpg-equipment-generic'
+  tag: 'rpg-equipment-generic',
+  shadow: true
 })
 export class EquipmentGeneric {
   @Prop() name: string = '';
@@ -16,6 +17,45 @@ export class EquipmentGeneric {
   @State() currentCount: number;
   @State() currentWeight: number = 0;
   @State() itemWeight: number;
+
+  @Event() reachedEndOfEquipment: EventEmitter<any>;
+  
+  private selectedEditor: any;
+
+  @Listen('editorSelected')
+  protected async onEditorSelected(ev: CustomEvent) {
+    this.selectedEditor = ev.detail;
+  }
+
+  @Listen('keydown')
+  protected async onKeyDown(e: KeyboardEvent) {
+    console.log(e);
+    if (!this.selectedEditor) {
+      return;
+    }
+    if (e.key === 'tab' || e.keyCode === 9) {
+      this.selectedEditor.closeEditor();
+
+      const sibling = this.selectedEditor.nextElementSibling;
+
+      if (sibling && sibling.tagName.toLowerCase() === 'rpg-text-input') {
+        sibling.openEditor();
+      } else {
+        this.reachedEndOfEquipment.emit(this.el);
+      }
+    }
+  }
+
+  @Method()
+  public async openItemField(fieldIndex = 0) {
+    const fields = this.el.shadowRoot.querySelectorAll('rpg-text-input');
+
+    if (!fields[fieldIndex]) {
+      throw new Error(`No field at index ${fieldIndex}`);
+    }
+
+    await fields[fieldIndex].openEditor();
+  }
 
   @Method()
   public async useItem() {
@@ -38,10 +78,10 @@ export class EquipmentGeneric {
   }
 
   componentDidLoad() {
-    this.el.querySelector('.weight')
+    this.el.shadowRoot.querySelector('.weight')
       .addEventListener('rpg_text_changed', (ev) => this.playerChangedWeight(ev));
 
-    this.el.querySelector('.quantity')
+    this.el.shadowRoot.querySelector('.quantity')
       .addEventListener('rpg_text_changed', (ev) => this.playerChangedQuantity(ev));
   }
 
