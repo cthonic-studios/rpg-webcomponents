@@ -17,6 +17,36 @@
 | `styleType`    | `style-type`    |             | `string`  | `'inline'`  |
 
 
+## Events
+
+| Event            | Description | Type               |
+| ---------------- | ----------- | ------------------ |
+| `editorSelected` |             | `CustomEvent<any>` |
+
+
+## Methods
+
+### `closeEditor() => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+### `openEditor() => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+
 ## Dependencies
 
 ### Used by

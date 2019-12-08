@@ -17,31 +17,6 @@ export class EquipmentGeneric {
   @State() currentCount: number;
   @State() currentWeight: number = 0;
   @State() itemWeight: number;
-  
-  private selectedEditor: any;
-
-  @Listen('editorSelected')
-  protected async onEditorSelected(ev: CustomEvent) {
-    this.selectedEditor = ev.detail;
-  }
-
-  @Listen('keydown')
-  protected async onKeyDown(e: KeyboardEvent) {
-    console.log(e);
-    if (!this.selectedEditor) {
-      return;
-    }
-    if (e.key === 'tab' || e.keyCode === 9) {
-      this.selectedEditor.closeEditor();
-
-      const sibling = this.selectedEditor.nextElementSibling;
-      console.log(sibling.tagName);
-
-      if (sibling && sibling.tagName.toLowerCase() === 'rpg-text-input') {
-        sibling.openEditor();
-      }
-    }
-  }
 
   @Event() reachedEndOfEquipment: EventEmitter<any>;
   

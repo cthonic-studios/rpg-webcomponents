@@ -15,6 +15,7 @@
 - [character-skill](../character-sheet/character-skill)
 - [rpg-wallet](../character-sheet/wallet)
 - [death-saving-throw](../5e/death-saving-throw)
+- [rpg-spell-line](../pathfinder-2e/spell-line)
 - [rpg-equipment-box](../character-sheet/equipment/box)
 
 ### Graph
@@ -26,6 +27,7 @@ graph TD;
   my-app --> character-skill
   my-app --> rpg-wallet
   my-app --> death-saving-throw
+  my-app --> rpg-spell-line
   my-app --> rpg-equipment-box
   character-attribute --> editable-number
   point-tracker --> editable-number

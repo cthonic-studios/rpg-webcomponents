@@ -10,7 +10,7 @@ export class EquipmentBox {
 
   @State() totalWeight: number = 0;
 
-  @Element() el;
+  @Element() el: HTMLElement;
 
   @Listen('reachedEndOfEquipment')
   protected onReachedEndOfLine(ev: CustomEvent) {

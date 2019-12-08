@@ -15,7 +15,24 @@
 | `weight`        | `weight`         |             | `number` | `0`         |
 
 
+## Events
+
+| Event                   | Description | Type               |
+| ----------------------- | ----------- | ------------------ |
+| `reachedEndOfEquipment` |             | `CustomEvent<any>` |
+
+
 ## Methods
+
+### `openItemField(fieldIndex?: number) => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
 
 ### `useItem() => Promise<boolean>`
 
