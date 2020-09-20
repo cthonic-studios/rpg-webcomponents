@@ -1,3 +1,5 @@
+> ⚠ This repository has moved over to Gitlab: [https://gitlab.com/cthonic-studios/rpg-webcomponents](https://gitlab.com/cthonic-studios/rpg-webcomponents)
+
 # Stencil App Starter
 
 Stencil is a compiler for building fast web apps using Web Components.
